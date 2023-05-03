@@ -11,11 +11,12 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float speed = 10.0f;
     [SerializeField] private float jumpForce = 5.0f;
+
     private float horizontalInput;
     private Vector2 move;
     private bool isGround;
     private enum MovementState { Idle, Run, Jump, Falling };
-    private MovementState state; 
+    private MovementState state;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +44,7 @@ public class PlayerController : MonoBehaviour
             move.x += speed * horizontalInput * Time.deltaTime;
             transform.position = move;
         }
-       
+
 
         if (Input.GetKeyDown(KeyCode.Space) && isGround)
         {
@@ -70,11 +71,11 @@ public class PlayerController : MonoBehaviour
             state = MovementState.Idle;
         }
 
-        if (rb.velocity.y>.1f)
+        if (rb.velocity.y > .1f)
         {
-            state=MovementState.Jump;
+            state = MovementState.Jump;
         }
-        else if ((rb.velocity.y<-.1f) && (!isGround))
+        else if ((rb.velocity.y < -.1f) && (!isGround))
         {
             state = MovementState.Falling;
         }
@@ -82,9 +83,9 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground")) 
+        if (collision.gameObject.CompareTag("Ground"))
             isGround = true;
-        
+
     }
 
 
