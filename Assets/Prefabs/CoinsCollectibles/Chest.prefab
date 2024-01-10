@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6807784931894289449}
   - component: {fileID: 6807784931894289448}
   - component: {fileID: 6807784931894289455}
+  - component: {fileID: 2662044749217819890}
   - component: {fileID: 8202944273349009154}
   - component: {fileID: 413539607466000647}
   m_Layer: 0
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 123195443
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 933891f03a7cd884d9aa2fb57544a342, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -108,6 +109,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2662044749217819890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6807784931894289454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2c15b5f2df66e49ac184766d3af346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 8067551829690269348, guid: c194bb6c5e1ffc24fa3f2cf78272a77a, type: 3}
+  chestTransform: {fileID: 6807784931894289449}
+  spawnForce: 1
+  spawnRadius: 1
+  numCoinsToSpawn: 1
 --- !u!61 &8202944273349009154
 BoxCollider2D:
   m_ObjectHideFlags: 0

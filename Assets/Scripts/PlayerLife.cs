@@ -11,6 +11,8 @@ public class PlayerLife : MonoBehaviour
     private Animator animator;
     public float deathDelay = 1.0f;
 
+    [SerializeField] private AudioSource dethAudioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,18 +21,25 @@ public class PlayerLife : MonoBehaviour
         colliderPlayer = GetComponent<CapsuleCollider2D>();
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.gameObject.CompareTag("Enemy") && !isDead)// Death animations
-        {  
+        if (collision.CompareTag("Enemy") && !isDead)// Death animations
+        {
             Die();
         }
-       
     }
+    //private void OnCollisionEnter2D(Collision2D other)
+    //{
+    //    if (other.gameObject.CompareTag("Enemy") && !isDead)// Death animations
+    //    {  
+    //        Die();
+    //    }
+       
+    //}
 
     private void Die()
     {
-        
+        dethAudioSource.Play();
         isDead = true;
         rb.velocity = Vector2.zero;
        // colliderPlayer.enabled = false;

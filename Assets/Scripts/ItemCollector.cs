@@ -4,34 +4,44 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public enum PikableType { Coins, Keys } // for adding to Inventory in Game Manager script
 public class ItemCollector : MonoBehaviour
 {
-    [SerializeField] private PikableType type; // create inventory
-    [SerializeField] private int coinsCounter;
-    [SerializeField] private int keysCounter;
+    //  [SerializeField] private PikableType type; // create inventory
+    [SerializeField] public int coinsCounter;
+    [SerializeField] public int keysCounter;
+    
     [SerializeField] private Text coins;
     [SerializeField] private Text keys;
-    private Animator animator;
-    private bool chestIsOpen = false;
+    [SerializeField] private AudioSource[] collectedAudio;
+
+
+   
+    private bool chestIsOpen;
+
+   
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Coin"))
         {
-            type = PikableType.Coins;
+            collectedAudio[0].Play();
+            
             coinsCounter++;
             Destroy(collision.gameObject);
-            coins.text =""+coinsCounter;
+            coins.text = "" + coinsCounter;
         }
-        if (collision.gameObject.CompareTag("Chest")) // Opening Chest (to add: instans coins and a key)
+        if (collision.gameObject.CompareTag("Chest")) // Opening Chest (to add: instans coins)
         {
-            chestIsOpen = true;
-            animator = collision.gameObject.GetComponent<Animator>();
-            animator.SetBool("IsOpen", chestIsOpen);
+            if (!chestIsOpen)
+            { collectedAudio[1].Play(); }
+           chestIsOpen = true;
+           collision.gameObject.GetComponent<Animator>().SetBool("IsOpen", chestIsOpen);
+           
         }
         if (collision.gameObject.CompareTag("Key"))
         {
-            type = PikableType.Keys;
+            collectedAudio[2].Play();
+            
             keysCounter++;
             keys.text = "Key: " + keysCounter;
             Destroy(collision.gameObject);
