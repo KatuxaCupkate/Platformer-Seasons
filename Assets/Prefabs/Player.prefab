@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpForce: 20
+  jumpForce: 15
   jumpSoundEffect: {fileID: 1588523790}
 --- !u!70 &957116735
 CapsuleCollider2D:
@@ -182,7 +182,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinsCounter: 0
   keysCounter: 0
-  coinsPrefabs: {fileID: 0}
   coins: {fileID: 0}
   keys: {fileID: 0}
   collectedAudio:

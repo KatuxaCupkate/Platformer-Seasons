@@ -5,26 +5,39 @@ using UnityEngine.SceneManagement;
 
 public class Finish : MonoBehaviour
 {
-    public bool finish = false;
+    public bool levelCompleted = false;
    
-   [SerializeField] private ItemCollector itemSc;
+    private ItemCollector itemSc;
+
+    private void Start()
+    {
+            
+    }
     // TODO 
     // cut-scene "go home" after chek req.
-
-    private void Update()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (itemSc.keysCounter > 0 && Input.GetKeyDown(KeyCode.K))
-        { Invoke("ComleteLevel", 2f); }
+            itemSc=collision.GetComponent<ItemCollector>();
 
+        if ( collision.CompareTag("Player")&& itemSc.keysCounter > 0 && Input.GetKeyDown(KeyCode.K))
+        {
+            Invoke("LoadNextScene", 1f);
+            levelCompleted = true;
+            itemSc.keysCounter--;
+        }
+        
     }
+
+   
     //cut-scene 
 
-    private void ComleteLevel()
+    private void LoadNextScene()
     {
         
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+       SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         
     }
+
 
  
 }

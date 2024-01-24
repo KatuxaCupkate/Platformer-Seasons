@@ -50,10 +50,11 @@ MonoBehaviour:
   dialogueWindow: {fileID: 4120861644657350949}
   writingSpeed: 0.03
   dialogues:
-  - Hey! Summer is almoste over!
-  - It's getting colder...
-  - If you want to get home >>
-  - Finde me a green key and press <K>
+  - Brrr.. It's even colder now!
+  - Don't you want to warm up?
+  - You should pay for warm!
+  - ' 50 coins for cloud lift he-he'
+  - And don't forget the house key!
 --- !u!1 &2571369211615463002
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7e06a38aa03dc41b4ee9d2d2d5473e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finish: 0
+  levelCompleted: 0
   itemSc: {fileID: 0}
 --- !u!1 &4120861644657350949
 GameObject:

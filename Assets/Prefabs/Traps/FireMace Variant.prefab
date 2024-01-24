@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &982809912575860833
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2221796116467466688, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466689, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: waypoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466689, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466689, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466689, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: waypoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466689, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: waypoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466690, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466690, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466690, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466690, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466690, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3795681
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466690, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.11779562
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466690, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466690, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466690, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466690, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466690, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466690, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466690, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466691, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: m_Color.b
+      value: 0.46907264
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466691, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: m_Color.g
+      value: 0.46907264
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466691, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466700, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: m_Name
+      value: FireMace
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221796116467466700, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
