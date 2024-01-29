@@ -21,7 +21,7 @@ public class Finish : MonoBehaviour
 
         if ( collision.CompareTag("Player")&& itemSc.keysCounter > 0 && Input.GetKeyDown(KeyCode.K))
         {
-            Invoke("LoadNextScene", 1f);
+            Invoke("LoadNextScene",0f);
             levelCompleted = true;
             itemSc.keysCounter--;
         }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CoinSpawner : MonoBehaviour
 {
-   [SerializeField] private GameObject coinPrefab;  // The coin prefab to spawn
+   [SerializeField] private GameObject keyPrefab;  // The coin prefab to spawn
     [SerializeField] private Transform chestTransform;  // The transform of the chest
 
     [SerializeField] private float spawnForce = 3f;  // The force at which the coins are spawned
@@ -27,7 +27,7 @@ public class CoinSpawner : MonoBehaviour
             Vector2 randomPosition = Random.insideUnitCircle * spawnRadius;
 
             // Instantiate the coin prefab at the calculated position
-            GameObject coin = Instantiate(coinPrefab, new Vector3(chestTransform.position.x,chestTransform.position.y+1,0), Quaternion.identity);
+            GameObject coin = Instantiate(keyPrefab, new Vector3(chestTransform.position.x,chestTransform.position.y+1,0), Quaternion.identity);
 
             // Apply a force to the spawned coin
             

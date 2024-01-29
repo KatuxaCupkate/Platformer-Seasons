@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class PlayerLife : MonoBehaviour
 {
     public bool isDead=false;
-    private CapsuleCollider2D colliderPlayer;
     private Rigidbody2D rb;
     private Animator animator;
     public float deathDelay = 1.0f;
@@ -18,7 +17,7 @@ public class PlayerLife : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        colliderPlayer = GetComponent<CapsuleCollider2D>();
+      
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

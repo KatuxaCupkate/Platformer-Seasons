@@ -6,9 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Start Screen.unity
+    guid: 21a7fcecbeb893b44906920008038fc4
+  - enabled: 1
     path: Assets/Scenes/Summer.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Autumn.unity
     guid: 20b19c0d7ca6e8245a330a5a2be8c1e5
+  - enabled: 1
+    path: Assets/Scenes/Winter.unity
+    guid: a3722a3714a78da479fd04fe6ab02997
   m_configObjects: {}

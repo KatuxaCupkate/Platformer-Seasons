@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 1588523792}
   - component: {fileID: 1588523793}
   - component: {fileID: 1588523794}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpForce: 15
+  jumpForce: 17
   jumpSoundEffect: {fileID: 1588523790}
 --- !u!70 &957116735
 CapsuleCollider2D:
