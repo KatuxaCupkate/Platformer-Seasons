@@ -40,12 +40,10 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerMove()
     {
-        if (!playerLife.isDead)
-        {
             move = transform.position;
             move.x += speed * horizontalInput * Time.deltaTime;
             transform.position = move;
-        }
+        
 
         //Jump
         if (Input.GetKeyDown(KeyCode.Space) && isGround)

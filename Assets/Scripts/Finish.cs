@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class Finish : MonoBehaviour
 {
     public bool levelCompleted = false;
-   
-    private ItemCollector itemSc;
+
+    Wallet wallet;
 
     private void Start()
     {
@@ -17,13 +17,15 @@ public class Finish : MonoBehaviour
     // cut-scene "go home" after chek req.
     private void OnTriggerStay2D(Collider2D collision)
     {
-            itemSc=collision.GetComponent<ItemCollector>();
-
-        if ( collision.CompareTag("Player")&& itemSc.keysCounter > 0 && Input.GetKeyDown(KeyCode.K))
+        if ( collision.CompareTag("Player"))
         {
-            Invoke("LoadNextScene",0f);
-            levelCompleted = true;
-            itemSc.keysCounter--;
+            wallet = collision.GetComponent<Wallet>();
+            if (wallet._keyCount > 0 && Input.GetKeyDown(KeyCode.K))
+            {
+                Invoke("LoadNextScene", 0f);
+                levelCompleted = true;
+            }
+            
         }
         
     }

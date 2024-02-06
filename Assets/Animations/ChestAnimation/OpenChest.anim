@@ -80,11 +80,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0.62
-    functionName: SpawnCoins
-    data: 
-    objectReferenceParameter: {fileID: 11500000, guid: ea2c15b5f2df66e49ac184766d3af346, type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []

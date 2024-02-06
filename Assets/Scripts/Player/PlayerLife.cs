@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
+using System;
+using System.ComponentModel;
 
+[RequireComponent (typeof(Rigidbody2D))]
 public class PlayerLife : MonoBehaviour
 {
-    public bool isDead=false;
+   
+    private bool isDead=false;
     private Rigidbody2D rb;
     private Animator animator;
-    public float deathDelay = 1.0f;
+   
 
     [SerializeField] private AudioSource dethAudioSource;
 
@@ -27,18 +31,11 @@ public class PlayerLife : MonoBehaviour
             Die();
         }
     }
-    //private void OnCollisionEnter2D(Collision2D other)
-    //{
-    //    if (other.gameObject.CompareTag("Enemy") && !isDead)// Death animations
-    //    {  
-    //        Die();
-    //    }
-       
-    //}
 
     private void Die()
     {
         dethAudioSource.Play();
+        EventBus.OnPlayerDethEvent(); // create death event for game manager 
         isDead = true;
         rb.velocity = Vector2.zero;
        // colliderPlayer.enabled = false;
@@ -46,9 +43,6 @@ public class PlayerLife : MonoBehaviour
         
     }
 
-    private void ReloadLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    
 
 }

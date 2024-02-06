@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class ItemCollector : MonoBehaviour
+public class ItemCollector : Singleton<ItemCollector>
 {
     //  [SerializeField] private PikableType type; // create inventory
-    [SerializeField] public int coinsCounter;
-    [SerializeField] public int keysCounter;
+     private int coinsCounter;
+     public int keysCounter;
     
     [SerializeField] private Text coins;
     [SerializeField] private Text keys;
@@ -18,8 +18,14 @@ public class ItemCollector : MonoBehaviour
    
     private bool chestIsOpen;
 
-   
-    
+    private void Start()
+    {
+        if (ItemCollector.Instance!=null)
+        {
+            this.coinsCounter=ItemCollector.Instance.coinsCounter;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Coin"))

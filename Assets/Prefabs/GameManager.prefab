@@ -47,4 +47,5 @@ MonoBehaviour:
   titleScreen: {fileID: 0}
   pauseScreen: {fileID: 0}
   gameOverScreen: {fileID: 0}
+  exitButton: {fileID: 0}
   restartButton: {fileID: 0}
