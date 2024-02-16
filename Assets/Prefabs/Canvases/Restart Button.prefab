@@ -257,7 +257,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9064465444996746858, guid: c125a3e36310181449aa77f14442d242, type: 3}
+      - m_Target: {fileID: 6233778622211090276, guid: c125a3e36310181449aa77f14442d242, type: 3}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ReloadLevel
         m_Mode: 1

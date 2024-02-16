@@ -6,21 +6,13 @@ using UnityEngine.UI;
 
 public class Key : MonoBehaviour
 {
-   // [SerializeField] private Text keys;
-
-   // public int _keyCount { get; private set; }
-
-    private void Start()
-    {
-        //_keyCount = 0;
-    }
+    private int _amount;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
         {
-           // _keyCount++;
-            //keys.text = "Key " + _keyCount;
-            EventBus.OnItemPickedUpEvent("Key");
+            _amount++;
+            EventBus.OnItemPickedUpEvent(gameObject.tag,_amount);
             Destroy(gameObject);
         }
     }

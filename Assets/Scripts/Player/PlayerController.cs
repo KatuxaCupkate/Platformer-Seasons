@@ -7,14 +7,16 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer rbSprite;
     private Animator animator;
-    private PlayerLife playerLife;
+   
 
-    [SerializeField] private float speed = 10.0f;
-    [SerializeField] private float jumpForce = 5.0f;
+    [SerializeField] private float _speed = 10.0f;
+    [SerializeField] private float _jumpForce = 5.0f;
+    [SerializeField] private Transform startPoint;
 
     private float horizontalInput;
     private Vector2 move;
     private bool isGround;
+    private bool isDead;
     private enum MovementState { Idle, Run, Jump, Falling };
     private MovementState state;
 
@@ -26,7 +28,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rbSprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        playerLife = GetComponent<PlayerLife>();
+        transform.position = startPoint.position;
+
     }
 
     // Update is called once per frame
@@ -37,19 +40,31 @@ public class PlayerController : MonoBehaviour
         UpdateAnimationState();
 
     }
-
+    private void OnEnable()
+    {
+        EventBus.PlayerDeathEvent += IsPlayerDead;
+    }
+    private void OnDisable()
+    {
+        
+        EventBus.PlayerDeathEvent -= IsPlayerDead;
+        
+    }
     public void PlayerMove()
     {
+        if (!isDead)
+        {
             move = transform.position;
-            move.x += speed * horizontalInput * Time.deltaTime;
+            move.x += _speed * horizontalInput * Time.deltaTime;
             transform.position = move;
+        }
         
 
         //Jump
         if (Input.GetKeyDown(KeyCode.Space) && isGround)
         {
             jumpSoundEffect.Play();
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            rb.velocity = new Vector2(rb.velocity.x, _jumpForce);
             isGround = false;
 
         }
@@ -89,5 +104,8 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
+    private void IsPlayerDead()
+    {
+        isDead=true;
+    }
 }

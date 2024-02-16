@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CoinSpawner : MonoBehaviour
 {
-   [SerializeField] private GameObject itemPrefab;  // The coin prefab to spawn
+   [SerializeField] private GameObject itemPrefab;  // The item prefab to spawn
    private Transform _chestTransform;  // The transform of the chest
 
     //[SerializeField] private float spawnForce = 3f;  // The force at which the coins are spawned

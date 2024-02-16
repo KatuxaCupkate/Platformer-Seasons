@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : Singleton<AudioManager>
 {
     [SerializeField] private AudioSource[] collectedAudio;
+    private const string _keyName = "Key";
+    private const string _coinName = "Coin";
+    private const string _chestName = "Chest";
+
 
     private void OnEnable()
     {
@@ -15,16 +19,19 @@ public class AudioManager : MonoBehaviour
     {
         EventBus.ItemPickedUpEvent -= PlayItemAudio;
     }
-    public void PlayItemAudio(string name)
+    public void PlayItemAudio(string name, int amount)
     {
         switch (name)
         {
 
-            case "Key":
+            case _keyName:
                 collectedAudio[0].Play();
                 break;
-            case "Coin":
+            case _coinName:
                 collectedAudio[1].Play();
+                break;
+            case _chestName:
+                collectedAudio[2].Play();
                 break;
             default:
                 break;

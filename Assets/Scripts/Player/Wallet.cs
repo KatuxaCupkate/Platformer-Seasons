@@ -1,47 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Wallet : Singleton<Wallet> 
 {
-    public int _balance { get; private set; }
-    public int _keyCount { get; private set; }
+    public int Balance { get; private set; }
+    public int KeyCount { get; private set; }
+
     [SerializeField] CoinsView coinsView;
     // Start is called before the first frame update
 
-    private void Awake()
+    void Start()
     {
-        EventBus.CoinsBalanceChangedEvent += ChangeBalance;
-        EventBus.ItemPickedUpEvent += ChangeKey;
+        if (Wallet.Instance == null)
+        {
+            Balance = 0;
+            KeyCount = 0;
+        }
+
+    }
+
+    private void OnEnable()
+    {
+        EventBus.ItemPickedUpEvent += ChangeKeyAndCoinBalance;
+        EventBus.PlayerDeathEvent += ResetBalanceOnPlayersDeath;
     }
 
     private void OnDisable()
     {
-        EventBus.CoinsBalanceChangedEvent -= ChangeBalance;
-        EventBus.ItemPickedUpEvent -= ChangeKey;
+        EventBus.PlayerDeathEvent -= ResetBalanceOnPlayersDeath;
+        EventBus.ItemPickedUpEvent -= ChangeKeyAndCoinBalance;
     }
-    void Start()
+    
+    public void ChangeKeyAndCoinBalance(string name, int amount)
     {
-        _balance = 0;
-        _keyCount = 0;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (name.Equals("Key"))
+        { KeyCount += amount; }
+        else if (name.Equals("Coin"))
+        { Balance += amount;}
     }
 
-    public void ChangeBalance(int _pickedAmount)
+    public int SetBalance()
     {
-        _balance += _pickedAmount;
-        coinsView.ChangeCoinsView(_balance);
-
+        Wallet.Instance.Balance = Balance;
+        return Balance;
     }
-    public void ChangeKey(string _name)
+
+    public void ResetBalanceOnPlayersDeath()
     {
-        if (_name != "Coin")
-            _keyCount++;
-        coinsView.ChangeKeyView(_name);
+        Balance = 0;
+        KeyCount = 0;
     }
 }

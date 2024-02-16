@@ -7,10 +7,12 @@ public class Finish : MonoBehaviour
 {
     public bool levelCompleted = false;
 
-    Wallet wallet;
+    private int _requireCoinsAmount = 50;
+    private int _requireKeysAmount = 1;
 
     private void Start()
     {
+        
             
     }
     // TODO 
@@ -19,19 +21,15 @@ public class Finish : MonoBehaviour
     {
         if ( collision.CompareTag("Player"))
         {
-            wallet = collision.GetComponent<Wallet>();
-            if (wallet._keyCount > 0 && Input.GetKeyDown(KeyCode.K))
+            if (Wallet.Instance.KeyCount > 0 && Input.GetKeyDown(KeyCode.K))
             {
-                Invoke("LoadNextScene", 0f);
+                Invoke("LoadNextScene",0f);
                 levelCompleted = true;
             }
             
         }
         
     }
-
-   
-    //cut-scene 
 
     private void LoadNextScene()
     {
@@ -40,6 +38,32 @@ public class Finish : MonoBehaviour
         
     }
 
+    private bool CheckRequierments()
+    {
+        bool isPlayerPass = false;
+        switch (SceneManager.GetActiveScene().name)
+
+        {
+            case ("Summer"):
+                if (Wallet.Instance.KeyCount == _requireKeysAmount)
+                isPlayerPass=true;
+                break;
+            case ("Autum"):
+                if(Wallet.Instance.Balance >= _requireCoinsAmount)
+                    isPlayerPass = true;
+                break;
+            case ("Winter"):
+                // TODO 
+                //Enemy Dead?
+                isPlayerPass =false;
+                break;
+            default:
+                isPlayerPass = false;
+                break;
+
+        }
+        return isPlayerPass;
+    }
 
  
 }
