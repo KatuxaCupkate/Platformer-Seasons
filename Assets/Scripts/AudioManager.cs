@@ -5,6 +5,8 @@ using UnityEngine;
 public class AudioManager : Singleton<AudioManager>
 {
     [SerializeField] private AudioSource[] collectedAudio;
+    [SerializeField] private AudioSource _enemyDeadAudio;
+    [SerializeField] private AudioSource _enemyDamageAudio;
     private const string _keyName = "Key";
     private const string _coinName = "Coin";
     private const string _chestName = "Chest";
@@ -13,10 +15,14 @@ public class AudioManager : Singleton<AudioManager>
     private void OnEnable()
     {
         EventBus.ItemPickedUpEvent += PlayItemAudio;
+        EventBus.EnemyDeathEvent += PlayEnemyDeadAudio;
+        EventBus.EnemyGetDamageEvent += PlayEnemyDamageAudio;
     }
 
     private void OnDisable()
     {
+        EventBus.EnemyGetDamageEvent -= PlayEnemyDamageAudio;
+        EventBus.EnemyDeathEvent -= PlayEnemyDeadAudio;
         EventBus.ItemPickedUpEvent -= PlayItemAudio;
     }
     public void PlayItemAudio(string name, int amount)
@@ -37,5 +43,16 @@ public class AudioManager : Singleton<AudioManager>
                 break;
            
         }
+    }
+
+
+    private void PlayEnemyDeadAudio()
+    {
+            _enemyDeadAudio.Play();
+    }
+    
+    private void PlayEnemyDamageAudio()
+    {
+        _enemyDamageAudio.Play();
     }
 }

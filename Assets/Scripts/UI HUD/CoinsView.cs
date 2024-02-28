@@ -14,7 +14,7 @@ public class CoinsView : Singleton<CoinsView>
 
         if (Wallet.Instance != null)
         {
-        ChangeView("Key", Wallet.Instance.KeyCount); 
+       
             SetCoinsView(Wallet.Instance.SetBalance());
         }
        

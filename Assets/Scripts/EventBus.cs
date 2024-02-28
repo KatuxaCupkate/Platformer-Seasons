@@ -11,6 +11,8 @@ public static class EventBus
     public static event OnCoinsBalanceChanged CoinsBalanceChangedEvent;
 
     public static Action PlayerDeathEvent;
+    public static Action EnemyDeathEvent;
+    public static Action EnemyGetDamageEvent;
     public static Action ChestIsOpenEvent;
     public static Action <string,int> ItemPickedUpEvent ;
 
@@ -32,5 +34,15 @@ public static class EventBus
     public static void OnPlayerDethEvent()
     {
         PlayerDeathEvent?.Invoke();
+    }
+
+    public static void OnEnemyDeathEvent()
+    {
+        EnemyDeathEvent?.Invoke();
+    }
+
+   public static void OnEnemyGetDamage()
+    {
+        EnemyGetDamageEvent?.Invoke();
     }
 }
