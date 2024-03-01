@@ -6,7 +6,7 @@ using System;
 using System.ComponentModel;
 
 [RequireComponent (typeof(Rigidbody2D))]
-public class PlayerLife : MonoBehaviour
+public class PlayerLife : Singleton<PlayerLife> 
 {
    
     private bool isDead=false;
@@ -37,8 +37,6 @@ public class PlayerLife : MonoBehaviour
         dethAudioSource.Play();
         EventBus.OnPlayerDethEvent(); // create death event for game manager 
         isDead = true;
-        rb.velocity = Vector2.zero;
-       // colliderPlayer.enabled = false;
         animator.SetTrigger("Death");
         
     }

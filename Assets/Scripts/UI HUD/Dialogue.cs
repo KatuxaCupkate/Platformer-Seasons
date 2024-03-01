@@ -7,8 +7,6 @@ using TMPro;
 
 public class Dialogue : MonoBehaviour
 {
-    public int requiaredMoney = 100;
-    public bool hasKey = false;
      public TMP_Text dialogueText;
 
     [SerializeField] private GameObject dialogueWindow;

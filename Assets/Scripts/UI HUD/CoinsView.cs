@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class CoinsView : Singleton<CoinsView>
 {
     [SerializeField] private Text coinsBalanceText;
-    [SerializeField] private Text key;
+  
+    [SerializeField] private RawImage keyEmpty;
+    [SerializeField] private RawImage keyFull;
 
     private void Start()
     {
@@ -44,14 +46,9 @@ public class CoinsView : Singleton<CoinsView>
     {
        amount = Wallet.Instance.Balance;
 
-        if(key==null)
-        {
-            key = Instance.key;
-        }
-
         if (name.Equals("Key"))
         {
-           key.text = Wallet.Instance.KeyCount.ToString();
+            keyFull.gameObject.SetActive(true);
 
         }
         if (coinsBalanceText == null)

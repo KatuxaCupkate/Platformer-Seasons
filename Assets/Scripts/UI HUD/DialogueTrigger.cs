@@ -6,8 +6,6 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour
 {
     [SerializeField] private Dialogue dialogueScript;
-    public int requiredMoney = 100;  
-    public bool hasKey = false;
     bool playerDetected;
 
    private void OnTriggerEnter2D(Collider2D collision)

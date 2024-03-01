@@ -1,22 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton  <PlayerController>
 {
     private Rigidbody2D rb;
     private SpriteRenderer rbSprite;
     private Animator animator;
-   
+    private CinemachineVirtualCamera vCamera;
 
     [SerializeField] private float _speed = 10.0f;
     [SerializeField] private float _jumpForce = 5.0f;
-    [SerializeField] private Transform startPoint;
+   
 
     private float horizontalInput;
     private Vector2 move;
     private bool isGround;
-    private bool isDead;
+     public bool CanMove { get; private set; } 
     private enum MovementState { Idle, Run, Jump, Falling };
     private MovementState state;
 
@@ -28,8 +29,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rbSprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        transform.position = startPoint.position;
-
+        CanMove = true;
     }
 
     // Update is called once per frame
@@ -38,21 +38,23 @@ public class PlayerController : MonoBehaviour
         PlayerMove();
         horizontalInput = Input.GetAxisRaw("Horizontal");
         UpdateAnimationState();
-
+        
     }
     private void OnEnable()
     {
         EventBus.PlayerDeathEvent += IsPlayerDead;
+        EventBus.LevelRestartedEvent += ResetPlayerControl;
     }
     private void OnDisable()
     {
         
         EventBus.PlayerDeathEvent -= IsPlayerDead;
+        EventBus.LevelRestartedEvent -= ResetPlayerControl;
         
     }
     public void PlayerMove()
     {
-        if (!isDead)
+        if (CanMove)
         {
             move = transform.position;
             move.x += _speed * horizontalInput * Time.deltaTime;
@@ -61,7 +63,7 @@ public class PlayerController : MonoBehaviour
         
 
         //Jump
-        if (Input.GetKeyDown(KeyCode.Space) && isGround)
+        if (Input.GetKeyDown(KeyCode.Space) && isGround&&CanMove)
         {
             jumpSoundEffect.Play();
             rb.velocity = new Vector2(rb.velocity.x, _jumpForce);
@@ -106,6 +108,14 @@ public class PlayerController : MonoBehaviour
 
     private void IsPlayerDead()
     {
-        isDead=true;
+        CanMove = false; 
     }
+
+    private void ResetPlayerControl()
+    {
+        PlayerController.Instance.gameObject.AddComponent<PlayerLife>();
+        vCamera=FindAnyObjectByType<CinemachineVirtualCamera>();
+        vCamera.Follow = gameObject.transform;
+        CanMove = true;
+    }   
 }

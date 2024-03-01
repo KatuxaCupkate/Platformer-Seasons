@@ -5,10 +5,12 @@ using UnityEngine;
 public class EnemyLife : MonoBehaviour
 {
     [SerializeField] SpriteRenderer sprite;
+    [SerializeField] Animation deathAnimation;
     private int _health;
 
     private void Start()
-    {
+    { 
+        deathAnimation=GetComponent<Animation>();
         _health = 5;
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -36,6 +38,8 @@ public class EnemyLife : MonoBehaviour
     {
         if(_health==0)
         {
+            
+            deathAnimation.Play();
             Destroy(gameObject);
             EventBus.OnEnemyDeathEvent();
         }

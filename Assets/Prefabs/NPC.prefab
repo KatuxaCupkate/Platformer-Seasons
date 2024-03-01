@@ -44,8 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 259db7ca6317ec84f99889771b6bf4bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiaredMoney: 100
-  hasKey: 0
   dialogueText: {fileID: 4120861644693032494}
   dialogueWindow: {fileID: 4120861644657350949}
   writingSpeed: 0.03
@@ -69,7 +67,6 @@ GameObject:
   - component: {fileID: 6560420576153201841}
   - component: {fileID: 3931343951111052440}
   - component: {fileID: 2034632528}
-  - component: {fileID: 2034632533}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -134,9 +131,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 123195443
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 270240193, guid: 7271c00af7c561f4da251fcfe62912d4, type: 3}
-  m_Color: {r: 0.64705884, g: 0.93050325, b: 0, a: 1}
+  m_Color: {r: 0.86915386, g: 0.92941177, b: 0, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
@@ -222,21 +219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueScript: {fileID: 291640069}
-  requiredMoney: 100
-  hasKey: 0
---- !u!114 &2034632533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2571369211615463002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea7e06a38aa03dc41b4ee9d2d2d5473e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelCompleted: 0
 --- !u!1 &4120861644657350949
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,8 +244,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4120861644657350949}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.11067775, y: 1.2997316, z: -9.398527}
-  m_LocalScale: {x: 0.965501, y: 0.7545462, z: 0.54185224}
+  m_LocalPosition: {x: -0.02, y: 1.6, z: -9.398527}
+  m_LocalScale: {x: 1.4879336, y: 1.1628312, z: 0.8350485}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4120861644693032493}
@@ -380,7 +362,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+  - {fileID: -1394428030395756057, guid: 2ec683c65842e47478bc95591ba04606, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -424,8 +406,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Hey! Summer is almost over!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2ec683c65842e47478bc95591ba04606, type: 2}
+  m_sharedMaterial: {fileID: -1394428030395756057, guid: 2ec683c65842e47478bc95591ba04606, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -449,7 +431,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 2.9
+  m_fontSize: 2.1
   m_fontSizeBase: 2
   m_fontWeight: 400
   m_enableAutoSizing: 1

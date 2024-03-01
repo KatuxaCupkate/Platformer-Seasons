@@ -5,40 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class Finish : MonoBehaviour
 {
+    [SerializeField] GameObject cloudPlatform;
     public bool levelCompleted = false;
 
     private int _requireCoinsAmount = 50;
     private int _requireKeysAmount = 1;
 
-    private void Start()
-    {
-        
-            
-    }
     // TODO 
     // cut-scene "go home" after chek req.
     private void OnTriggerStay2D(Collider2D collision)
     {
         if ( collision.CompareTag("Player"))
         {
-            if (Wallet.Instance.KeyCount > 0 && Input.GetKeyDown(KeyCode.K))
+            if (PlayerCanPass() && Input.GetKeyDown(KeyCode.K))
             {
-                Invoke("LoadNextScene",0f);
+                EventBus.OnLevelComplited(SceneManager.GetActiveScene().buildIndex);
                 levelCompleted = true;
             }
             
         }
         
     }
+   
 
-    private void LoadNextScene()
-    {
-        
-       SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        
-    }
-
-    private bool CheckRequierments()
+    private bool PlayerCanPass()
     {
         bool isPlayerPass = false;
         switch (SceneManager.GetActiveScene().name)
@@ -46,11 +36,18 @@ public class Finish : MonoBehaviour
         {
             case ("Summer"):
                 if (Wallet.Instance.KeyCount == _requireKeysAmount)
-                isPlayerPass=true;
-                break;
-            case ("Autum"):
-                if(Wallet.Instance.Balance >= _requireCoinsAmount)
+                {
                     isPlayerPass = true;
+                  
+
+                }
+                break;
+            case ("Autumn"):
+                if (Wallet.Instance.Balance >= _requireCoinsAmount|| Wallet.Instance.KeyCount == _requireKeysAmount)
+                { 
+                    isPlayerPass = true;
+                    ActivatePlatform(isPlayerPass);
+                }
                 break;
             case ("Winter"):
                 // TODO 
@@ -65,5 +62,12 @@ public class Finish : MonoBehaviour
         return isPlayerPass;
     }
 
- 
+     private void ActivatePlatform(bool PlayerCanPass)
+    {
+        
+        var waipointBeh =  cloudPlatform.GetComponent<WaypointFollower>();
+        waipointBeh.enabled = PlayerCanPass;
+    }
+
+   
 }

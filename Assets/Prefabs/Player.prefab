@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1068957824
 Transform:
   m_ObjectHideFlags: 0
@@ -212,7 +212,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _jumpForce: 16
-  startPoint: {fileID: 0}
   jumpSoundEffect: {fileID: 1588523790}
 --- !u!114 &6101747112516547334
 MonoBehaviour:
