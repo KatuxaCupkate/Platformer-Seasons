@@ -37,6 +37,7 @@ Some assets were modified or recolored using Adobe Illustrator.
 ### NPC Interaction:
 * Give key to NPC - "C"
 * Next dialogue line - "E"
+* Switch to the next level - "K"
 
 ### Design patterns used:
 
@@ -58,12 +59,13 @@ To progress to the next level, you will need 50 coins and a key.
 Coins are required to activate the lift from the NPC to the finish line.
 
 ## Winter Level
-
+(Under Development)<br>
 To complete the level, you need to defeat enemies. For this, you will need 100 coins to purchase snowballs from the NPC. 
 Destroying maces is achieved by [shooting snowballs](#Controls):
 - 3 hits for small mace;
-- 5 hits for large mace;
-After that, part of the traps disappears. (under development) <br> <br>
+- 5 hits for large mace;<br><br>
+
+After that, part of the traps disappears. (under development) <br>
 You will also need a key. <br> <br>
 
 
