@@ -48,7 +48,7 @@ Some assets were modified or recolored using Adobe Illustrator.
 
 ## Summer Level
 
-To proceed to the next level, you need to find the key and [give it to the NPC](#Give-key-to-NPC---"C").
+To proceed to the next level, you need to find the key and [give it to the NPC](Give-key-to-NPC---"C").
 Collecting coins is optional.
 When moving to the next level, the number of collected coins is saved.
 
