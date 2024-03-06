@@ -48,7 +48,7 @@ Some assets were modified or recolored using Adobe Illustrator.
 
 ## Summer Level
 
-To proceed to the next level, you need to find the key and [give it to the NPC](*Give-key-to-NPC---"C").
+To proceed to the next level, you need to find the key and [give it to the NPC](###NPC-Interaction:).
 Collecting coins is optional.
 When moving to the next level, the number of collected coins is saved.
 
@@ -60,7 +60,7 @@ Coins are required to activate the lift from the NPC to the finish line.
 ## Winter Level
 
 To complete the level, you need to defeat enemies. For this, you will need 100 coins to purchase snowballs from the NPC. 
-Destroying maces is achieved by [shooting snowballs](*Shoot-snowballs---"F"):
+Destroying maces is achieved by [shooting snowballs](###Controls:):
 - 3 hits for small mace;
 - 5 hits for large mace;
 After that, part of the traps disappears. (under development) <br> <br>
