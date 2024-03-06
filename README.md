@@ -5,9 +5,9 @@ This project originally started as an educational one, where I discover base of 
 ## Description
 ### This is a simple 2D platformer consisting of 3 levels:
 
-* [Summer Level](#SummerLevel)
-* [Autumn Level](#AutumnLevel)
-* [Winter Level](#AutumnLevel)
+* [Summer Level](#Summer-Level)
+* [Autumn Level](#Autumn-Level)
+* [Winter Level](#Winter-Level)
 
 #### Each level is equipped with classic platformer traps:
 * Pendulums
@@ -48,7 +48,7 @@ Some assets were modified or recolored using Adobe Illustrator.
 
 ## Summer Level
 
-To proceed to the next level, you need to find the key and [give it to the NPC](#GivekeytoNPC-"C").
+To proceed to the next level, you need to find the key and [give it to the NPC](#Give-key-to-NPC-"C").
 Collecting coins is optional.
 When moving to the next level, the number of collected coins is saved.
 
@@ -60,7 +60,7 @@ Coins are required to activate the lift from the NPC to the finish line.
 ## Winter Level
 
 To complete the level, you need to defeat enemies. For this, you will need 100 coins to purchase snowballs from the NPC. 
-Destroying maces is achieved by [shooting snowballs](Shootsnowballs"F"):
+Destroying maces is achieved by [shooting snowballs](Shoot-snowballs-"F"):
 - 3 hits for small mace;
 - 5 hits for large mace;
 After that, part of the traps disappears. (under development) <br> <br>
