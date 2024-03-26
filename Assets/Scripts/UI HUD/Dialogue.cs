@@ -7,15 +7,18 @@ using TMPro;
 
 public class Dialogue : MonoBehaviour
 {
-     public TMP_Text dialogueText;
+    public TMP_Text dialogueText;
 
     [SerializeField] private GameObject dialogueWindow;
 
     [SerializeField] private float writingSpeed;
 
     [SerializeField] private List<string> dialogues;
+    [SerializeField] private int _finishDialIndex;
+    private int _startDialIndex = 0;
+    private Finish _finishSc;
 
-    //index of dialouge 
+    //index of dialogue 
     private int index;
     private int charIndex;
     private bool dialogueShown = false;
@@ -24,6 +27,7 @@ public class Dialogue : MonoBehaviour
     private void Awake()
     {
         ToggleWindow(false);
+        _finishSc = FindAnyObjectByType<Finish>();
     }
 
     public void ToggleWindow(bool show)
@@ -31,43 +35,45 @@ public class Dialogue : MonoBehaviour
         dialogueWindow.SetActive(show);
     }
 
-    public void StartDialouge()
+    public void StartDialogue()
     {
         if (dialogueShown)
             return;
         dialogueShown = true;
-        
+
         ToggleWindow(true);
-        index = 0;
-        // Start whit first dialogue
-        GetDialogue(0);
+        if (_finishSc.levelCompleted)
+            index = _finishDialIndex;
+        else
+            index = _startDialIndex;
+        // Start with first dialogue
+        GetDialogue(index);
 
     }
     private void GetDialogue(int i)
     {
         index = i;
         charIndex = 0;
-        //clear dialouge component text
+        //clear dialogue component text
         dialogueText.text = string.Empty;
         StartCoroutine(Writing());
 
     }
-    public void EndDialouge()
+    public void EndDialogue()
     {
         dialogueShown = false;
         waitNextSent = false;
         StopAllCoroutines();
         ToggleWindow(false);
 
-        // if Player have current key or money he can start new level
     }
 
     IEnumerator Writing()
     {
-        string currentDialouge = dialogues[index];
-        dialogueText.text += currentDialouge[charIndex];
+        string currentDialogue = dialogues[index];
+        dialogueText.text += currentDialogue[charIndex];
         charIndex++;
-        if (charIndex < currentDialouge.Length)
+        if (charIndex < currentDialogue.Length)
         {
 
             yield return new WaitForSeconds(writingSpeed);
@@ -89,11 +95,15 @@ public class Dialogue : MonoBehaviour
         if (waitNextSent && Input.GetKeyDown(KeyCode.E))
         {
             waitNextSent = false;
-            index++;
+            if (!_finishSc.levelCompleted & index == _finishDialIndex-1)
+                index = 0;
+            else
+                index++;
+
             if (index < dialogues.Count)
             { GetDialogue(index); }
-            else
-            { EndDialouge(); }
+            else 
+            { EndDialogue(); }
 
 
         }

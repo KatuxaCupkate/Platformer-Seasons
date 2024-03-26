@@ -12,6 +12,7 @@ TagManager:
   - Home
   - Water
   - Snow Ball
+  - NPC
   layers:
   - Default
   - TransparentFX

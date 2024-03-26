@@ -1,0 +1,155 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &411682137088136362
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 291640069, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: dialogues.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 291640069, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: dialogues.Array.data[0]
+      value: Hey! I can help you to get Home!
+      objectReference: {fileID: 0}
+    - target: {fileID: 291640069, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: dialogues.Array.data[1]
+      value: You can ride the cloud for 70 coins!
+      objectReference: {fileID: 0}
+    - target: {fileID: 291640069, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: dialogues.Array.data[2]
+      value: Collect the coins and bring it to me..
+      objectReference: {fileID: 0}
+    - target: {fileID: 291640069, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: dialogues.Array.data[3]
+      value: Don't forget about the house key!
+      objectReference: {fileID: 0}
+    - target: {fileID: 291640069, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: dialogues.Array.data[4]
+      value: If you even want to get home!
+      objectReference: {fileID: 0}
+    - target: {fileID: 291640069, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: dialogues.Array.data[5]
+      value: 'Yey! You finde the key! '
+      objectReference: {fileID: 0}
+    - target: {fileID: 291640069, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: dialogues.Array.data[6]
+      value: And collected all coins!
+      objectReference: {fileID: 0}
+    - target: {fileID: 291640069, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: dialogues.Array.data[7]
+      value: Throw them to me!
+      objectReference: {fileID: 0}
+    - target: {fileID: 291640069, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: dialogues.Array.data[8]
+      value: Ta-da lift is working!
+      objectReference: {fileID: 0}
+    - target: {fileID: 291640069, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: dialogues.Array.data[9]
+      value: Home sweet home!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034632528, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: _finishDialIndex
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529685475585177638, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: m_Color.b
+      value: 0.252314
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529685475585177638, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: m_Color.g
+      value: 0.39896178
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529685475585177638, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6603774
+      objectReference: {fileID: 0}
+    - target: {fileID: 2571369211615463002, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: m_Name
+      value: NPC Autumn
+      objectReference: {fileID: 0}
+    - target: {fileID: 2571369211615463002, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: m_TagString
+      value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719907358583557208, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719907358583557208, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719907358583557208, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719907358583557208, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719907358583557208, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719907358583557208, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719907358583557208, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719907358583557208, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719907358583557208, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719907358583557208, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719907358583557208, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+--- !u!1 &2745436641755943664 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2571369211615463002, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
+  m_PrefabInstance: {fileID: 411682137088136362}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2123206196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2745436641755943664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7e06a38aa03dc41b4ee9d2d2d5473e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cloudPlatform: {fileID: 0}
+  coinSpawner: {fileID: 96553803815148492}
+--- !u!114 &96553803815148492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2745436641755943664}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2c15b5f2df66e49ac184766d3af346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrefab: {fileID: 2779951629318161454, guid: 9e57a0955b153dd41bd71272731a4464, type: 3}

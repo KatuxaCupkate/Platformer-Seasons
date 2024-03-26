@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2221796116467466689, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
       propertyPath: waypoints.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2221796116467466689, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
       propertyPath: waypoints.Array.data[0]
@@ -85,23 +85,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2221796116467466691, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
       propertyPath: m_Color.b
-      value: 0.46907264
+      value: 0.9528302
       objectReference: {fileID: 0}
     - target: {fileID: 2221796116467466691, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
       propertyPath: m_Color.g
-      value: 0.46907264
+      value: 0.83331436
       objectReference: {fileID: 0}
     - target: {fileID: 2221796116467466691, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
       propertyPath: m_Color.r
-      value: 0.7830189
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2221796116467466700, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
       propertyPath: m_Name
-      value: FireMace
+      value: FireMace Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2221796116467466700, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743885902017443568, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}
+      propertyPath: _health
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dba2298cb727a5a40b374d67ecdf0e01, type: 3}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Mono.Cecil;
+
 
 
 public static class EventBus 
@@ -56,7 +56,7 @@ public static class EventBus
     }
 
 
-    public static void OnLevelComplited(int sceneIndex)
+    public static void OnLevelCompleted(int sceneIndex)
     {
         LevelCompletedEvent ?.Invoke(sceneIndex);
     }

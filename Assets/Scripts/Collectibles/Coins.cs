@@ -15,5 +15,15 @@ public class Coins : MonoBehaviour
         }
     }
 
-   
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.CompareTag("NPC"))
+        {
+            EventBus.OnItemPickedUpEvent(gameObject.tag,-50);
+            Destroy(gameObject);
+        }
+    }
+
+
 }

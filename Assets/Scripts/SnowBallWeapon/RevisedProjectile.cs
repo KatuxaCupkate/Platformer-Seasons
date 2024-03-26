@@ -9,8 +9,8 @@ public class RevisedProjectile : MonoBehaviour
     [SerializeField] private float _speed;
 
    [SerializeField] private Rigidbody2D _rigidbody;
+   [SerializeField ]private ParticleSystem _particle;
    private SnowBallWeapon weapon;
-   private ParticleSystem _particle;
    
     private IObjectPool<RevisedProjectile> objectPool;
     // public property to give the projectile a reference to its ObjectPool
@@ -19,7 +19,7 @@ public class RevisedProjectile : MonoBehaviour
     private void Awake()
     {
         _rigidbody=GetComponent<Rigidbody2D>();
-        _particle = GetComponentInChildren<ParticleSystem>();
+        
         weapon = FindAnyObjectByType<SnowBallWeapon>();
       
     }
@@ -54,6 +54,7 @@ public class RevisedProjectile : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("Player"))
         {
+            ParticleOn();
             Invoke("ReleaseSnowBall", 0.2f);
         }
     }

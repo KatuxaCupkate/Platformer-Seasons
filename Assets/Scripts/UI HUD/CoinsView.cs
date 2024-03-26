@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +17,10 @@ public class CoinsView : Singleton<CoinsView>
         {
        
             SetCoinsView(Wallet.Instance.SetBalance());
+        }
+        if (coinsBalanceText == null)
+        {
+            coinsBalanceText = Instance.coinsBalanceText;
         }
        
     }
@@ -44,17 +47,15 @@ public class CoinsView : Singleton<CoinsView>
     }
     public void ChangeView(string name, int amount)
     {
-       amount = Wallet.Instance.Balance;
 
-        if (name.Equals("Key"))
+        if (name.Equals("Key") && amount > 0)
         {
             keyFull.gameObject.SetActive(true);
+        }
+        else if (name.Equals("Key") && amount <= 0)
+        { keyFull.gameObject.SetActive(false); }
 
-        }
-        if (coinsBalanceText == null)
-        {
-            coinsBalanceText = Instance.coinsBalanceText;
-        }
+         amount = Wallet.Instance.Balance;
 
         coinsBalanceText.text = "" + amount;
     }

@@ -13,7 +13,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private Button exitButton;
     [SerializeField] private Button restartButton;
-    
+
+    private bool _paused;
     private bool _gameIsActive;
     public override void Awake()
     {
@@ -26,8 +27,13 @@ public class GameManager : Singleton<GameManager>
         if (restartButton == null)
             restartButton = Instance.restartButton;
 
-
-
+    }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            PauseGame();
+        }
     }
     private void OnEnable()
     {
@@ -41,6 +47,20 @@ public class GameManager : Singleton<GameManager>
 
     public void PauseGame()
     {
+        if (!_paused)
+        {
+            pauseScreen.SetActive(true);
+            exitButton.gameObject.SetActive(true);
+            _paused = true;
+            Time.timeScale = 0;
+        }
+        else
+        {
+            pauseScreen.SetActive(false);
+            exitButton.gameObject.SetActive(false);
+            _paused = false;
+            Time.timeScale = 1;
+        }
         //TODO
     }
 

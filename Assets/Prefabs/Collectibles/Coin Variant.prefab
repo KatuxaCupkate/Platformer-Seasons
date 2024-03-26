@@ -7,9 +7,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 800261382, guid: bb9f258046eba7a4f992253042edc538, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 800261382, guid: bb9f258046eba7a4f992253042edc538, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 178938187943341135, guid: bb9f258046eba7a4f992253042edc538, type: 3}
       propertyPath: m_Name
-      value: Coin
+      value: Coin Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 468008569682014294, guid: bb9f258046eba7a4f992253042edc538, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 468008569682014294, guid: bb9f258046eba7a4f992253042edc538, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 468008569682014294, guid: bb9f258046eba7a4f992253042edc538, type: 3}
+      propertyPath: m_UseAutoMass
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 468008569682014294, guid: bb9f258046eba7a4f992253042edc538, type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 468008569682014294, guid: bb9f258046eba7a4f992253042edc538, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 468008569682014294, guid: bb9f258046eba7a4f992253042edc538, type: 3}
+      propertyPath: m_UseFullKinematicContacts
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5244428125182986369, guid: bb9f258046eba7a4f992253042edc538, type: 3}
       propertyPath: m_RootOrder
@@ -17,15 +49,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5244428125182986369, guid: bb9f258046eba7a4f992253042edc538, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.9999998
+      value: 1.32
       objectReference: {fileID: 0}
     - target: {fileID: 5244428125182986369, guid: bb9f258046eba7a4f992253042edc538, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.9999998
+      value: 1.32
       objectReference: {fileID: 0}
     - target: {fileID: 5244428125182986369, guid: bb9f258046eba7a4f992253042edc538, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.9999998
+      value: 1.32
       objectReference: {fileID: 0}
     - target: {fileID: 5244428125182986369, guid: bb9f258046eba7a4f992253042edc538, type: 3}
       propertyPath: m_LocalPosition.x

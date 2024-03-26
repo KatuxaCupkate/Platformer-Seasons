@@ -33,12 +33,13 @@ public class Wallet : Singleton<Wallet>
         EventBus.ItemPickedUpEvent -= ChangeKeyAndCoinBalance;
     }
     
-    public void ChangeKeyAndCoinBalance(string name, int amount)
+    private void ChangeKeyAndCoinBalance(string name, int amount)
     {
         if (name.Equals("Key"))
         { KeyCount += amount; }
         else if (name.Equals("Coin"))
         { Balance += amount;}
+       
     }
 
     public int SetBalance()
@@ -47,7 +48,7 @@ public class Wallet : Singleton<Wallet>
         return Balance;
     }
 
-    public void ResetBalanceOnPlayersDeath()
+    private void ResetBalanceOnPlayersDeath()
     {
         Balance = 0;
         KeyCount = 0;
