@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2947279258688335640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2947279258688335646}
+  - component: {fileID: 2947279258688335647}
+  m_Layer: 0
+  m_Name: BootstrapGamePlay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2947279258688335646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2947279258688335640}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 36.6241, y: -9.577916, z: -1.1324122}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2947279258688335647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2947279258688335640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e13959bf6190a4f84307869f9ca741, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataWallet:
+    CoinsBalance: 0
+  Player: {fileID: 875187792025009642, guid: 8f7fbb7f685ee784983d223132e6a747, type: 3}
+  StartPoint: {fileID: 0}
+  wallet: {fileID: 6893975477077509854, guid: 85044826dec07f9488fdc0c192ec9c60, type: 3}
+  vCamera: {fileID: 0}
+  spawner: {fileID: 0}
+  coinsView: {fileID: 0}
+  finish: {fileID: 0}

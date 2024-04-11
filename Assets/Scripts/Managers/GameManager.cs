@@ -67,12 +67,10 @@ public class GameManager : Singleton<GameManager>
     // Pop-up title screen and restart button on player's death 
     private void RestartGame()
     {
-       
         titleScreen.SetActive(true);
         restartButton.gameObject.SetActive(true);
         exitButton.gameObject.SetActive(true);
-        _gameIsActive = false;
-        
+        _gameIsActive = false;  
     }
 
     // Exit application on button click

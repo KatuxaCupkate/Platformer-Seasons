@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Wallet : Singleton<Wallet> 
+public class Wallet:MonoBehaviour
 {
+    private GameDataStorage storageWallet;
+    private GameDataWallet dataWallet;
     public int Balance { get; private set; }
     public int KeyCount { get; private set; }
+    
 
-    [SerializeField] CoinsView coinsView;
-    // Start is called before the first frame update
+    public void Initialize(GameDataWallet data, GameDataStorage dataStorage)
+    {    
+        storageWallet = dataStorage;
+        dataWallet = data;
 
-    void Start()
-    {
-        if (Wallet.Instance == null)
-        {
-            Balance = 0;
-            KeyCount = 0;
-        }
-
+       Balance = dataWallet.CoinsBalance;
+       this.KeyCount = KeyCount;
     }
 
     private void OnEnable()
@@ -39,12 +38,12 @@ public class Wallet : Singleton<Wallet>
         { KeyCount += amount; }
         else if (name.Equals("Coin"))
         { Balance += amount;}
-       
+        SaveCoinsAmount(Balance);
     }
 
     public int SetBalance()
     {
-        Wallet.Instance.Balance = Balance;
+        //Wallet.Instance.Balance = Balance;
         return Balance;
     }
 
@@ -52,5 +51,12 @@ public class Wallet : Singleton<Wallet>
     {
         Balance = 0;
         KeyCount = 0;
+        SaveCoinsAmount(Balance);
+    }
+
+    public void SaveCoinsAmount(int balance)
+    {
+        dataWallet.CoinsBalance = balance;
+        storageWallet.Save(dataWallet);
     }
 }

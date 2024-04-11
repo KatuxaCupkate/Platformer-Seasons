@@ -7,21 +7,28 @@ using UnityEngine.SceneManagement;
 public class Finish : MonoBehaviour
 {
     [SerializeField] GameObject cloudPlatform;
-    [SerializeField] CoinSpawner coinSpawner;
+    [SerializeField] Spawner coinSpawner;
+    [SerializeField] GameObject snowBallWeapon;
+    private Wallet wallet;
+    private GameObject player;
     public bool levelCompleted { get; private set; }
 
     private int _requireCoinsAmount = 50;
     private int _requireKeysAmount = 1;
     private int _requireEnemies = 2;
 
-    private int _deathCount;
+    public int _deathCount;
 
-    // TODO 
-    // cut-scene "go home" after chek req.
+    public void Initialize(Wallet wallet,GameObject player)
+    {
+        this.wallet = wallet;
+        this.player = player;
+
+    }
 
     private void Update()
     { 
-      levelCompleted = PlayerCanPass(); 
+  
        if (Input.GetKeyDown(KeyCode.K))
        {
          EventBus.OnLevelCompleted(SceneManager.GetActiveScene().buildIndex);
@@ -38,12 +45,13 @@ public class Finish : MonoBehaviour
         EventBus.EnemyDeathEvent -= CountEnemiesDeaths;
         
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && PlayerCanPass())
+        if (collision.CompareTag("Player"))
         {
-
+            levelCompleted = PlayerCanPass();
         }
+           
 
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -52,7 +60,7 @@ public class Finish : MonoBehaviour
         {
             Debug.Log("I get item");
             ActivatePlatform(true);
-            //play soud
+            
             //start cutscene 
         }
     }
@@ -64,13 +72,13 @@ public class Finish : MonoBehaviour
 
         {
             case ("Summer"):
-                if (Wallet.Instance.KeyCount >= _requireKeysAmount)
+                if (wallet.KeyCount >= _requireKeysAmount)
                 {
                     isPlayerPass = true;
                 }
                 break;
             case ("Autumn"):
-                if (Wallet.Instance.Balance >= _requireCoinsAmount && Wallet.Instance.KeyCount >= _requireKeysAmount)
+                if (wallet.Balance >= _requireCoinsAmount && wallet.KeyCount >= _requireKeysAmount)
                 {
                     isPlayerPass = true;
                    // ActivatePlatform(isPlayerPass);
@@ -78,7 +86,8 @@ public class Finish : MonoBehaviour
                 }
                 break;
             case ("Winter"):
-                if (_requireEnemies>=_deathCount)
+                if (wallet.Balance >= _requireCoinsAmount)
+                    GiveSnowBalls(player);
                 isPlayerPass = true;
                 break;
             default:
@@ -101,7 +110,7 @@ public class Finish : MonoBehaviour
         if (levelCompleted&& Input.GetKeyDown(KeyCode.C))
         {
             coinSpawner.enabled = true;
-            coinSpawner.StartCoroutine(coinSpawner.SpawnKeyEnumerator(new Vector2(1, 1), 0, PlayerController.Instance.transform));
+            coinSpawner.StartCoroutine(coinSpawner.SpawnItemEnumerator(new Vector2(1, 1), 0,player.gameObject.transform));
 
         }
     }
@@ -109,5 +118,11 @@ public class Finish : MonoBehaviour
     public void CountEnemiesDeaths()
     {
         _deathCount++;
+    }
+
+    public void GiveSnowBalls(GameObject Player)
+
+    {
+        Player.AddComponent<SnowBallWeapon>();
     }
 }

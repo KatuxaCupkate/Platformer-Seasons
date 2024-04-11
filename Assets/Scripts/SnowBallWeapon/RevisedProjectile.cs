@@ -24,9 +24,9 @@ public class RevisedProjectile : MonoBehaviour
       
     }
 
-    public void SetUpForce(Rigidbody2D rig,bool isFliped)
+    public void SetUpForce(Rigidbody2D rig,bool isFlipped)
     {
-        if (isFliped)
+        if (isFlipped)
         {
           rig.AddForce(new Vector2 (-1,1)* _speed,ForceMode2D.Impulse);
 
@@ -54,8 +54,8 @@ public class RevisedProjectile : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("Player"))
         {
-            ParticleOn();
-            Invoke("ReleaseSnowBall", 0.2f);
+           // ParticleOn();
+            objectPool.Release(this);
         }
     }
 

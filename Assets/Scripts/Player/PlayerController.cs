@@ -4,7 +4,7 @@ using UnityEngine;
 using Cinemachine;
 using System;
 
-public class PlayerController : Singleton<PlayerController>
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
@@ -12,7 +12,7 @@ public class PlayerController : Singleton<PlayerController>
     private Rigidbody2D rb;
     private SpriteRenderer rbSprite;
     private Animator animator;
-    private CinemachineVirtualCamera vCamera;
+  
 
     private Vector2 _initJumpVelocity;
     private float _yVel;
@@ -21,21 +21,19 @@ public class PlayerController : Singleton<PlayerController>
     private float horizontalInput;
     private Vector2 move;
     private bool isGround;
-    public bool CanMove { get; private set; } 
+    public bool CanMove { get; private set; }
     private enum MovementState { Idle, Run, Jump, Falling };
-    private MovementState state;
+  
 
     [SerializeField] private AudioSource jumpSoundEffect;
-
-    // Start is called before the first frame update
-    void Start()
+    public void Initialize(GameObject Player, bool CanMove)
     {
-        rb = GetComponent<Rigidbody2D>();
-        rbSprite = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-        CanMove = true;
-    }
+        animator = Player.GetComponent<Animator>();
+        rb = Player.GetComponent<Rigidbody2D>();
+        rbSprite = Player.GetComponent<SpriteRenderer>();
+        this.CanMove = CanMove;
 
+    }
     // Update is called once per frame
     void Update()
     {
@@ -46,14 +44,14 @@ public class PlayerController : Singleton<PlayerController>
     }
     private void OnEnable()
     {
-        EventBus.PlayerDeathEvent += PlayerCanMove;
-        EventBus.LevelRestartedEvent += ResetPlayerControl;
+        EventBus.PlayerDeathEvent += PlayerCantMove;
+       
     }
     private void OnDisable()
     {
         
-        EventBus.PlayerDeathEvent -= PlayerCanMove;
-        EventBus.LevelRestartedEvent -= ResetPlayerControl;
+        EventBus.PlayerDeathEvent -= PlayerCantMove;
+       
         
     }
     public void PlayerMove()
@@ -64,16 +62,12 @@ public class PlayerController : Singleton<PlayerController>
             move.x += _speed * horizontalInput * Time.deltaTime;
             transform.position = move;
         }
-        
-
         //Jump
         if (Input.GetKeyDown(KeyCode.Space) && isGround&&CanMove)
         {
             jumpSoundEffect.Play();
             Jump();
-           // rb.velocity = new Vector2(rb.velocity.x, _jumpForce);
             isGround = false;
-
         }
     }
     private void UpdateAnimationState()
@@ -111,19 +105,12 @@ public class PlayerController : Singleton<PlayerController>
 
     }
 
-    private void PlayerCanMove()
+    private void PlayerCantMove()
     {
         CanMove = false; 
     }
 
-    private void ResetPlayerControl()
-    {
-        PlayerController.Instance.gameObject.AddComponent<PlayerLife>();
-        vCamera= FindObjectOfType<CinemachineVirtualCamera>(); 
-        vCamera.Follow = this.gameObject.transform;
-        CanMove = true;
-    }   
-
+   
   private void Jump()
     {
         var gravity = (2 * _jumpForce) / (_timeToApex*_timeToApex);

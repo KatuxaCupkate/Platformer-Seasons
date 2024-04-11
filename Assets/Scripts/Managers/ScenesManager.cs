@@ -9,11 +9,7 @@ public class ScenesManager : Singleton<ScenesManager>
 {
     [SerializeField] private Animator _transitionAnimation;
     [SerializeField] private float _transitionTime;
-
-    private bool _lvlReloaded;
-    /// <summary>
-    /// 
-    /// </summary>
+ 
 
     private void OnEnable()
     {
@@ -43,7 +39,7 @@ public class ScenesManager : Singleton<ScenesManager>
     private void LoadNextScene(int sceneIndex)
     {
         StartCoroutine(LoadTransition(sceneIndex+1));  
-        EventBus.OnLevelRestarted();// reset controls 
+        EventBus.OnLevelRestarted();
     
     }
 

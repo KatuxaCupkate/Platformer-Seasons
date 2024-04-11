@@ -6,27 +6,28 @@ using System;
 using System.ComponentModel;
 
 [RequireComponent (typeof(Rigidbody2D))]
-public class PlayerLife : Singleton<PlayerLife> 
+public class PlayerLife : MonoBehaviour
 {
    
-    private bool isDead=false;
+    private bool isDead;
     private Rigidbody2D rb;
     private Animator animator;
    
 
-    [SerializeField] private AudioSource dethAudioSource;
+    [SerializeField] private AudioSource deathAudioSource;
 
     // Start is called before the first frame update
-    void Start()
+   public void Initialize(GameObject Player)
     {
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        rb = Player.GetComponent<Rigidbody2D>();
+        animator = Player.GetComponent<Animator>();
+        isDead = false;
       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy") && !isDead)// Death animations
+        if (collision.CompareTag("Enemy") && !isDead)
         {
             Die();
         }
@@ -34,8 +35,8 @@ public class PlayerLife : Singleton<PlayerLife>
 
     private void Die()
     {
-        dethAudioSource.Play();
-        EventBus.OnPlayerDethEvent(); // create death event for game manager 
+        //sdeathAudioSource.Play();
+        EventBus.OnPlayerDethEvent(); 
         isDead = true;
         animator.SetTrigger("Death");
         
