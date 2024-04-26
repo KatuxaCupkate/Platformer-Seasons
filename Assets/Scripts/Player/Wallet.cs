@@ -17,7 +17,7 @@ public class Wallet:MonoBehaviour
         dataWallet = data;
 
        Balance = dataWallet.CoinsBalance;
-       this.KeyCount = KeyCount;
+       KeyCount = 0;
     }
 
     private void OnEnable()
@@ -39,12 +39,6 @@ public class Wallet:MonoBehaviour
         else if (name.Equals("Coin"))
         { Balance += amount;}
         SaveCoinsAmount(Balance);
-    }
-
-    public int SetBalance()
-    {
-        //Wallet.Instance.Balance = Balance;
-        return Balance;
     }
 
     private void ResetBalanceOnPlayersDeath()

@@ -10,12 +10,12 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private GameObject _pressCWindow;
     [SerializeField] private int _finishDialIndex;
 
-    private Finish _finishSc;
+    private RequitementsBase _finishSc;
     bool playerDetected;
 
     private void Start()
     {
-        _finishSc = FindAnyObjectByType<Finish>();
+        _finishSc = FindAnyObjectByType<RequitementsBase>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
 
@@ -23,10 +23,9 @@ public class DialogueTrigger : MonoBehaviour
         if (!playerDetected && collision.CompareTag("Player"))
         {
             playerDetected = true;
-            dialogueScript.ToggleWindow(playerDetected);
-             dialogueScript.StartDialogue();
+           StartDialogue();
             
-            if (_finishSc.levelCompleted)
+            if (_finishSc.HaveRequireItems)
             {
                 _pressCWindow.SetActive(true);
             }

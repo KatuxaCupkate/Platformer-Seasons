@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 886666966741430510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 57.48548, y: -5.6555786, z: -1.1985396}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47,4 +47,3 @@ MonoBehaviour:
   collectionCheck: 1
   defaultCapacity: 5
   maxSize: 10
-  projectilePrefab: {fileID: 1144861203, guid: 3f95da9f6af461d42a506a498356d20c, type: 3}

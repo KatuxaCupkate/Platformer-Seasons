@@ -413,8 +413,6 @@ GameObject:
   - component: {fileID: 1791734447062916799}
   - component: {fileID: 2878157019030169703}
   - component: {fileID: 1543257351}
-  - component: {fileID: 8124620769841615377}
-  - component: {fileID: 1543257352}
   m_Layer: 0
   m_Name: Home
   m_TagString: Untagged
@@ -517,30 +515,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 30.921295, y: 17.92}
   m_EdgeRadius: 0
---- !u!114 &8124620769841615377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7555864916686614264}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea2c15b5f2df66e49ac184766d3af346, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 7472733074142191054, guid: a7e7a427c83b7c74c902a00cc4b5a748, type: 3}
---- !u!114 &1543257352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7555864916686614264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea7e06a38aa03dc41b4ee9d2d2d5473e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cloudPlatform: {fileID: 0}
-  coinSpawner: {fileID: 8124620769841615377}

@@ -13,6 +13,7 @@ public static class EventBus
     public static Action LevelRestartedEvent;
 
     public static Action<int> LevelCompletedEvent;
+    public static Action<bool> PlayerGetToFinishEvent;
 
     public static Action PlayerDeathEvent;
     public static Action EnemyDeathEvent;
@@ -59,5 +60,10 @@ public static class EventBus
     public static void OnLevelCompleted(int sceneIndex)
     {
         LevelCompletedEvent ?.Invoke(sceneIndex);
+    }
+
+    public static void OnGetToFinish(bool canPass)
+    {
+        PlayerGetToFinishEvent?.Invoke(canPass);
     }
 }

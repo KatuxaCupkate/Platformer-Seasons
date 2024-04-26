@@ -23,12 +23,7 @@ public class ScenesManager : Singleton<ScenesManager>
     // Start game from Start screen on Start button click
     public void StartGame()
     {
-       // StartCoroutine(LoadTransition(SceneManager.GetActiveScene().buildIndex+1));
-        //TODO 
-        // Choose level 
-        
        SceneManager.LoadScene("Summer");
-      
     }
     // Reload present level on Restart button click
     public void ReloadLevel()
@@ -36,9 +31,9 @@ public class ScenesManager : Singleton<ScenesManager>
        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
        EventBus.OnLevelRestarted();
     }
-    private void LoadNextScene(int sceneIndex)
+    private void LoadNextScene(int activeSceneIndex)
     {
-        StartCoroutine(LoadTransition(sceneIndex+1));  
+        StartCoroutine(LoadTransition(activeSceneIndex+1));  
         EventBus.OnLevelRestarted();
     
     }

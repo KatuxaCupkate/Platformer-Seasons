@@ -50,6 +50,7 @@ MonoBehaviour:
   StartPoint: {fileID: 0}
   wallet: {fileID: 6893975477077509854, guid: 85044826dec07f9488fdc0c192ec9c60, type: 3}
   vCamera: {fileID: 0}
-  spawner: {fileID: 0}
+  spawner:
+  - {fileID: 0}
   coinsView: {fileID: 0}
-  finish: {fileID: 0}
+  requitements: {fileID: 0}

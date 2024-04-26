@@ -121,35 +121,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
---- !u!1 &2745436641755943664 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2571369211615463002, guid: a9d0cf7cace2abc43bbbf14bdd849c74, type: 3}
-  m_PrefabInstance: {fileID: 411682137088136362}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2123206196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2745436641755943664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea7e06a38aa03dc41b4ee9d2d2d5473e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cloudPlatform: {fileID: 0}
-  coinSpawner: {fileID: 96553803815148492}
---- !u!114 &96553803815148492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2745436641755943664}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea2c15b5f2df66e49ac184766d3af346, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 2779951629318161454, guid: 9e57a0955b153dd41bd71272731a4464, type: 3}

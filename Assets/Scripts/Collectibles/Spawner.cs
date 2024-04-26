@@ -27,15 +27,14 @@ public class Spawner : MonoBehaviour
 
     private void SpawnItem()
     {
-        StartCoroutine(SpawnItemEnumerator(_direction, _waitForSec,_transform));
+        Instantiate(itemPrefab, new Vector2(transform.position.x, transform.position.y + 1), Quaternion.identity).GetComponent<Rigidbody2D>().AddForce(_direction * _impulseForce, ForceMode2D.Impulse);
     }
-    public IEnumerator SpawnItemEnumerator(Vector2 direction, float waitSec, Transform transform)
+    public IEnumerator SpawnItemEnumerator(Vector2 direction, float waitSec, Transform transform,int force)
     {
+       var clone = Instantiate(itemPrefab, new Vector2(transform.position.x, transform.position.y + 1), Quaternion.identity);
         yield return new WaitForSeconds(waitSec);
-        var key = Instantiate(itemPrefab, new Vector2(transform.position.x, transform.position.y + 1), Quaternion.identity);
-        var keyRig= key.GetComponent<Rigidbody2D>();
-        keyRig.AddForce(direction * _impulseForce, ForceMode2D.Impulse);
-
+      
+       
     }
 
     private void SetForSpawnFromChest()

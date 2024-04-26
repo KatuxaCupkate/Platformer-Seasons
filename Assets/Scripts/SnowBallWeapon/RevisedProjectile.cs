@@ -7,10 +7,9 @@ using UnityEngine.Pool;
 public class RevisedProjectile : MonoBehaviour
 {
     [SerializeField] private float _speed;
-
-   [SerializeField] private Rigidbody2D _rigidbody;
-   [SerializeField ]private ParticleSystem _particle;
-   private SnowBallWeapon weapon;
+    [SerializeField] private ParticleSystem _particle;
+  
+    private Rigidbody2D _rigidbody;
    
     private IObjectPool<RevisedProjectile> objectPool;
     // public property to give the projectile a reference to its ObjectPool
@@ -19,9 +18,7 @@ public class RevisedProjectile : MonoBehaviour
     private void Awake()
     {
         _rigidbody=GetComponent<Rigidbody2D>();
-        
-        weapon = FindAnyObjectByType<SnowBallWeapon>();
-      
+   
     }
 
     public void SetUpForce(Rigidbody2D rig,bool isFlipped)
@@ -38,6 +35,7 @@ public class RevisedProjectile : MonoBehaviour
         }
         
     }
+
 
     public void SetUpPosition(Transform weaponTransform)
     {

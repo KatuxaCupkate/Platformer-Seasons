@@ -13,17 +13,11 @@ public class Coins : MonoBehaviour
             EventBus.OnItemPickedUpEvent(gameObject.tag,_pickedAmount);
             Destroy(gameObject);
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
-        if (collision.gameObject.CompareTag("NPC"))
+        if (collision.CompareTag("NPC"))
         {
-            EventBus.OnItemPickedUpEvent(gameObject.tag,-50);
+            
             Destroy(gameObject);
         }
     }
-
 
 }

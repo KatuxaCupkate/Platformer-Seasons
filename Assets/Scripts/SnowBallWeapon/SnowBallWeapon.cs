@@ -19,8 +19,17 @@ public class SnowBallWeapon : MonoBehaviour
         objectPool = new ObjectPool<RevisedProjectile>(CreateProjectile,
         OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject,
         collectionCheck, defaultCapacity, maxSize);
-
-       
+                             
+      
+    }
+    private void OnEnable()
+    {
+        EventBus.PlayerGetToFinishEvent += ActivateTheWeapon;
+    }
+    private void OnDisable()
+    {
+        EventBus.PlayerGetToFinishEvent -= ActivateTheWeapon;
+        
     }
     private void Update()
     {
@@ -60,5 +69,10 @@ public class SnowBallWeapon : MonoBehaviour
     private void Fire()
     {
         objectPool.Get();
+    }
+
+    public void ActivateTheWeapon(bool activate)
+    {
+      gameObject.SetActive(activate);
     }
 }

@@ -9,15 +9,19 @@ public class BootstrapGamePlay : MonoBehaviour
 
     [SerializeField] GameObject Player;
     [SerializeField] GameObject StartPoint;
-    [SerializeField] Wallet wallet;
+    [SerializeField] GameObject walletPrefab;
     [SerializeField] CameraController vCamera;
-    [SerializeField] Spawner [] spawner;
+    [SerializeField] Spawner ChestSpawner;
+ 
     [SerializeField] CollectiblesView coinsView;
-    [SerializeField] Finish finish;
-
+   
+    [SerializeField] RequitementsBase  requitements;
+      
+    
 
     PlayerController playerController;
     PlayerLife playerLife;
+    Wallet wallet;
     GameDataStorage dataStorage;
     void Start()
     {
@@ -31,14 +35,14 @@ public class BootstrapGamePlay : MonoBehaviour
         SetPlayer();
         vCamera.Initialize(Player);
 
-        wallet = Instantiate(wallet);
+        walletPrefab = Instantiate(walletPrefab);
+        wallet = walletPrefab.GetComponent<Wallet>();
         wallet.Initialize(dataWallet,dataStorage);
-
         coinsView.Initialize(wallet);
-
-        spawner[0].Initialize();
-        spawner[1].Initialize();
-        finish.Initialize(wallet, Player);
+        requitements.Initialize(wallet);
+        ChestSpawner.Initialize();
+      //  spawner[1].Initialize();
+      //  finish.Initialize(wallet, Player);
     }
 
     private void SetPlayer()

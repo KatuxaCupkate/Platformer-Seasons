@@ -10,7 +10,6 @@ public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private GameObject titleScreen;
     [SerializeField] private GameObject pauseScreen;
-    [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private Button exitButton;
     [SerializeField] private Button restartButton;
 

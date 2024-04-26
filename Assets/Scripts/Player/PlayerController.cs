@@ -8,10 +8,12 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
+    [SerializeField] GameObject itemPrefab;
 
     private Rigidbody2D rb;
     private SpriteRenderer rbSprite;
     private Animator animator;
+    private Spawner spawner;
   
 
     private Vector2 _initJumpVelocity;
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     private Vector2 move;
     private bool isGround;
+    private bool canThrow;
     public bool CanMove { get; private set; }
     private enum MovementState { Idle, Run, Jump, Falling };
   
@@ -40,17 +43,19 @@ public class PlayerController : MonoBehaviour
         PlayerMove();
         horizontalInput = Input.GetAxisRaw("Horizontal");
         UpdateAnimationState();
-       
+        ThrowItem(canThrow);
     }
     private void OnEnable()
     {
         EventBus.PlayerDeathEvent += PlayerCantMove;
+        EventBus.PlayerGetToFinishEvent += CanThrowTheItem;
        
     }
     private void OnDisable()
     {
         
         EventBus.PlayerDeathEvent -= PlayerCantMove;
+        EventBus.PlayerGetToFinishEvent -= CanThrowTheItem;
        
         
     }
@@ -110,7 +115,6 @@ public class PlayerController : MonoBehaviour
         CanMove = false; 
     }
 
-   
   private void Jump()
     {
         var gravity = (2 * _jumpForce) / (_timeToApex*_timeToApex);
@@ -118,5 +122,21 @@ public class PlayerController : MonoBehaviour
         _timeToApex = _yVel / gravity;
         _initJumpVelocity = new Vector2(rb.velocity.x, _yVel);
         rb.velocity = _initJumpVelocity;
+    }
+
+    private void CanThrowTheItem(bool CanThrow)
+    {
+        canThrow = CanThrow; 
+    }
+    private void ThrowItem(bool CanThrow)
+    {
+        Vector2 direction = new Vector2(1, 1);
+        float waitSec = 0.1f;
+        int force = 3;
+        if (CanThrow&&Input.GetKeyDown(KeyCode.C))
+        {
+            Instantiate(itemPrefab, new Vector2(transform.position.x, transform.position.y + 1), Quaternion.identity).GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
+            canThrow = false;
+        }
     }
 }

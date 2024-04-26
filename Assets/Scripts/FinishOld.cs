@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Finish : MonoBehaviour
+public class FinishOld : MonoBehaviour
 {
     [SerializeField] GameObject cloudPlatform;
-    [SerializeField] Spawner coinSpawner;
-    [SerializeField] GameObject snowBallWeapon;
+    [SerializeField] GameObject weapon;
+    private Spawner coinSpawner;
     private Wallet wallet;
     private GameObject player;
     public bool levelCompleted { get; private set; }
 
-    private int _requireCoinsAmount = 50;
+    private int _requireCoinsAmount = 0;
     private int _requireKeysAmount = 1;
     private int _requireEnemies = 2;
 
@@ -23,12 +24,11 @@ public class Finish : MonoBehaviour
     {
         this.wallet = wallet;
         this.player = player;
-
+        coinSpawner = GetComponent<Spawner>();
     }
 
     private void Update()
-    { 
-  
+    {
        if (Input.GetKeyDown(KeyCode.K))
        {
          EventBus.OnLevelCompleted(SceneManager.GetActiveScene().buildIndex);
@@ -47,15 +47,18 @@ public class Finish : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
-        {
-            levelCompleted = PlayerCanPass();
-        }
-           
 
+        levelCompleted = PlayerCanPass();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            //EventBus.OnPlayerCanPass(PlayerCanPass());
+            Debug.Log("Check");
+          //  Instantiate(weapon, collision.gameObject.transform);
+        }
+
         if (collision.gameObject.CompareTag("Coin") || collision.gameObject.CompareTag("Key"))
         {
             Debug.Log("I get item");
@@ -75,20 +78,22 @@ public class Finish : MonoBehaviour
                 if (wallet.KeyCount >= _requireKeysAmount)
                 {
                     isPlayerPass = true;
+                    
                 }
                 break;
             case ("Autumn"):
                 if (wallet.Balance >= _requireCoinsAmount && wallet.KeyCount >= _requireKeysAmount)
                 {
                     isPlayerPass = true;
-                   // ActivatePlatform(isPlayerPass);
-
+                   
                 }
                 break;
             case ("Winter"):
                 if (wallet.Balance >= _requireCoinsAmount)
-                    GiveSnowBalls(player);
-                isPlayerPass = true;
+                { 
+                    isPlayerPass = true;
+                    
+                }
                 break;
             default:
                 isPlayerPass = false;
@@ -99,8 +104,7 @@ public class Finish : MonoBehaviour
     }
 
     private void ActivatePlatform(bool playerCanPass)
-    {
-
+    { 
         var waypointBeh = cloudPlatform.GetComponent<WaypointFollower>();
         waypointBeh.enabled = playerCanPass;
     }
@@ -110,7 +114,7 @@ public class Finish : MonoBehaviour
         if (levelCompleted&& Input.GetKeyDown(KeyCode.C))
         {
             coinSpawner.enabled = true;
-            coinSpawner.StartCoroutine(coinSpawner.SpawnItemEnumerator(new Vector2(1, 1), 0,player.gameObject.transform));
+            coinSpawner.StartCoroutine(coinSpawner.SpawnItemEnumerator(new Vector2(1, 1),0,player.gameObject.transform,3));
 
         }
     }
@@ -118,11 +122,5 @@ public class Finish : MonoBehaviour
     public void CountEnemiesDeaths()
     {
         _deathCount++;
-    }
-
-    public void GiveSnowBalls(GameObject Player)
-
-    {
-        Player.AddComponent<SnowBallWeapon>();
     }
 }

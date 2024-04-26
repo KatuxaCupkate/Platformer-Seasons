@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6101747112516547334}
   - component: {fileID: 1588523790}
   - component: {fileID: 1588523794}
+  - component: {fileID: 8995607251835752106}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -163,6 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _jumpForce: 3.2
+  itemPrefab: {fileID: 2779951629318161454, guid: 9e57a0955b153dd41bd71272731a4464, type: 3}
   jumpSoundEffect: {fileID: 1588523790}
 --- !u!114 &6101747112516547334
 MonoBehaviour:
@@ -369,3 +371,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8995607251835752106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875187792025009642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34b3cad40c49a5e42bfbf6e644ccc982, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectionCheck: 1
+  defaultCapacity: 5
+  maxSize: 10
+  projectilePrefab: {fileID: 1144861203, guid: 3f95da9f6af461d42a506a498356d20c, type: 3}
