@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BootstrapGamePlay : MonoBehaviour
@@ -9,40 +10,49 @@ public class BootstrapGamePlay : MonoBehaviour
 
     [SerializeField] GameObject Player;
     [SerializeField] GameObject StartPoint;
-    [SerializeField] GameObject walletPrefab;
+    [SerializeField] GameObject WalletPref;
     [SerializeField] CameraController vCamera;
     [SerializeField] Spawner ChestSpawner;
  
     [SerializeField] CollectiblesView coinsView;
    
-    [SerializeField] RequitementsBase  requitements;
-      
-    
+    [SerializeField] List<RequitementsBase> requitements;
+    [SerializeField] List<GameObject> RequireGameObjectsList;
+    [SerializeField] Dialogue NPCDialogue;
+   [SerializeField] FinishActions finishActions;
 
+
+    public Queue<GameObject> RequireGameObjectsQueue;
     PlayerController playerController;
     PlayerLife playerLife;
-    Wallet wallet;
+    Wallet Wallet;
     GameDataStorage dataStorage;
-    void Start()
+
+    private void Awake()
     {
        
-        if(dataStorage==null)
+    }
+    void Start()
+    {
+        RequireGameObjectsQueue = new Queue<GameObject>();
+        foreach (var item in RequireGameObjectsList)
         {
-          dataStorage = new GameDataStorage();
-        }
-        dataWallet = dataStorage.Load();
 
+           RequireGameObjectsQueue.Enqueue(item);
+        }
+
+        SetData();
         SetPlayer();
         vCamera.Initialize(Player);
+        Wallet = Instantiate(WalletPref).GetComponent<Wallet>();
+        Wallet.Initialize(dataWallet,dataStorage);
+        coinsView.Initialize(Wallet);
 
-        walletPrefab = Instantiate(walletPrefab);
-        wallet = walletPrefab.GetComponent<Wallet>();
-        wallet.Initialize(dataWallet,dataStorage);
-        coinsView.Initialize(wallet);
-        requitements.Initialize(wallet);
+        SetRequitements();
+
         ChestSpawner.Initialize();
-      //  spawner[1].Initialize();
-      //  finish.Initialize(wallet, Player);
+        NPCDialogue.Initialize(requitements[0]);
+        finishActions.Initialize(Player, vCamera);
     }
 
     private void SetPlayer()
@@ -52,5 +62,22 @@ public class BootstrapGamePlay : MonoBehaviour
         playerLife = Player.GetComponent<PlayerLife>();
         playerController.Initialize(Player,true);
         playerLife.Initialize(Player);
+    }
+
+    private void SetData()
+    {
+        if (dataStorage == null)
+        {
+            dataStorage = new GameDataStorage();
+        }
+        dataWallet = dataStorage.Load();
+    }
+
+    private void SetRequitements()
+    {
+        foreach (var item in requitements)
+        {
+            item.Initialize(Wallet, RequireGameObjectsQueue);
+        }
     }
 }

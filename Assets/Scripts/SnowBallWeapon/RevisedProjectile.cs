@@ -25,12 +25,12 @@ public class RevisedProjectile : MonoBehaviour
     {
         if (isFlipped)
         {
-          rig.AddForce(new Vector2 (-1,1)* _speed,ForceMode2D.Impulse);
+          rig.AddForce(new Vector2(-1,1)* _speed, ForceMode2D.Impulse);
 
         }
         else
         {
-          rig.AddForce((Vector2.one * _speed), ForceMode2D.Impulse);
+          rig.AddForce(new Vector2(1, 1) * _speed, ForceMode2D.Impulse);
 
         }
         
@@ -39,7 +39,7 @@ public class RevisedProjectile : MonoBehaviour
 
     public void SetUpPosition(Transform weaponTransform)
     {
-        gameObject.transform.position = weaponTransform.position;
+        gameObject.transform.position = new Vector2 (weaponTransform.position.x, weaponTransform.position.y + 1);
     }
 
     public void ParticleOn()
@@ -47,12 +47,15 @@ public class RevisedProjectile : MonoBehaviour
         _particle.Play();
        
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-           // ParticleOn();
+            // ParticleOn();
             objectPool.Release(this);
         }
     }

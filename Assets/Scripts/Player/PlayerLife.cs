@@ -36,7 +36,7 @@ public class PlayerLife : MonoBehaviour
     private void Die()
     {
         //sdeathAudioSource.Play();
-        EventBus.OnPlayerDethEvent(); 
+        EventBus.OnPlayerDeathEvent(); 
         isDead = true;
         animator.SetTrigger("Death");
         

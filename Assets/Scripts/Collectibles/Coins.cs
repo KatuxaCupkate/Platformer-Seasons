@@ -1,10 +1,11 @@
 
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Coins : MonoBehaviour 
 {
     private int _pickedAmount;
-
+   
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
@@ -15,7 +16,8 @@ public class Coins : MonoBehaviour
         }
         if (collision.CompareTag("NPC"))
         {
-            
+            EventBus.OnItemPickedUpEvent(gameObject.tag,-collision.GetComponent<RequitementsAutumn>().RequiringCoinCount);
+            EventBus.OnFinishActionTriggered(collision.CompareTag("NPC"));
             Destroy(gameObject);
         }
     }

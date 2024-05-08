@@ -7,16 +7,18 @@ using UnityEngine.SceneManagement;
 public abstract class RequitementsBase : MonoBehaviour 
 {
     public Dictionary<object, object> RequitementsToPass { get; private set; }
-    private Wallet Wallet;
-    public int LevelBuildIndex { get; private set; }
+    protected Wallet wallet;
     public bool HaveRequireItems { get; protected set; }
+    public Queue<GameObject> RequireGameObjects { get; protected set; } // need to player can pass this objects???
 
-    public virtual void Initialize(Wallet wallet)
+    public int BuildIndex { get; protected set; }
+    public virtual void Initialize(Wallet wallet, Queue<GameObject> RequireGameObjects)
     {
+        this.wallet= wallet;
+        this.RequireGameObjects = RequireGameObjects;
         RequitementsToPass = SetRequitements();
-        LevelBuildIndex = SceneManager.GetActiveScene().buildIndex;
         HaveRequireItems = false;
-        Wallet=wallet;
+        BuildIndex = SceneManager.GetActiveScene().buildIndex;
     }
     public abstract Dictionary<object, object> SetRequitements();
     public abstract bool CheckRequitementsForPassTheLevel(object objectValue,object objectName=null );

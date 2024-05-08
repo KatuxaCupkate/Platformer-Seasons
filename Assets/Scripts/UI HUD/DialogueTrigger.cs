@@ -15,7 +15,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Start()
     {
-        _finishSc = FindAnyObjectByType<RequitementsBase>();
+        _finishSc = GetComponent<RequitementsBase>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
 

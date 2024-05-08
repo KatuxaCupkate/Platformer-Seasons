@@ -6,12 +6,8 @@ public class EnemyLife : MonoBehaviour
 {
     [SerializeField] SpriteRenderer sprite;
   
-    [SerializeField] private int _health;
+    [SerializeField] private int Health;
 
-    private void Start()
-    { 
-       
-    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.collider.CompareTag("Snow Ball"))
@@ -28,14 +24,14 @@ public class EnemyLife : MonoBehaviour
     private void GetDamage()
     {
         sprite.color = Color.red;
-        _health--;
+        Health--;
         EventBus.OnEnemyGetDamage();
         
     }
 
     private void Die()
     {
-        if(_health==0)
+        if(Health==0)
         {
             Destroy(gameObject);
             EventBus.OnEnemyDeathEvent();

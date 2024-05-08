@@ -7,33 +7,19 @@ using UnityEngine.UIElements;
 public class RequitementsSummer : RequitementsBase
 {
    [SerializeField] private int RequireKeyAmount;
-   [SerializeField] private string RequireItemName;
+    private string RequireItemTag;
 
-   private Wallet wallet;
- 
-  
-    public override void Initialize(Wallet wallet)
-    {
-        base.Initialize(wallet);
-        this.wallet = wallet;
-    }
-
+    
     private void Update()
     {
-        HaveRequireItems = CheckRequitementsForPassTheLevel(wallet.KeyCount);
-        if(HaveRequireItems)
-        {
-            EventBus.OnGetToFinish(HaveRequireItems);
-        }
-
+        HaveRequireItems = CheckRequitementsForPassTheLevel(wallet.KeyCount);     
     }
     public override Dictionary<object, object> SetRequitements()
     {
-        object name = RequireItemName;
-        object value = RequireKeyAmount;
+        RequireItemTag = RequireGameObjects.Peek().tag;
        Dictionary<object, object> Requitements =  new Dictionary<object, object>()
         {
-            {name, value},
+            {RequireItemTag, RequireKeyAmount},
         };
 
         return Requitements;
@@ -45,7 +31,18 @@ public class RequitementsSummer : RequitementsBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       
+        if (HaveRequireItems&&collision.CompareTag("Player"))
+        {
+            RequireGameObjects.TryDequeue(out GameObject result);
+            EventBus.OnGetToFinish(result, HaveRequireItems);
+        }
     }
-  
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Key"))
+        {
+            EventBus.OnFinishActionTriggered(true);
+        }
+    }
 }

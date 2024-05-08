@@ -11,9 +11,11 @@ public static class EventBus
     public static event OnCoinsBalanceChanged CoinsBalanceChangedEvent;
 
     public static Action LevelRestartedEvent;
+    public static Action AllEnemiesDeadEvent;
+    public static Action<bool> FinishActionTriggerEvent;
 
     public static Action<int> LevelCompletedEvent;
-    public static Action<bool> PlayerGetToFinishEvent;
+    public static Action<GameObject,bool> PlayerGetToFinishEvent;
 
     public static Action PlayerDeathEvent;
     public static Action EnemyDeathEvent;
@@ -36,7 +38,7 @@ public static class EventBus
     {
         CoinsBalanceChangedEvent?.Invoke(_amount);
     }
-    public static void OnPlayerDethEvent()
+    public static void OnPlayerDeathEvent()
     {
         PlayerDeathEvent?.Invoke();
     }
@@ -62,8 +64,18 @@ public static class EventBus
         LevelCompletedEvent ?.Invoke(sceneIndex);
     }
 
-    public static void OnGetToFinish(bool canPass)
+    public static void OnGetToFinish(GameObject reqItem,bool canPass)
     {
-        PlayerGetToFinishEvent?.Invoke(canPass);
+        PlayerGetToFinishEvent?.Invoke(reqItem,canPass);
+    }
+
+    public static void OnFinishActionTriggered(bool isNPC)
+    {
+        FinishActionTriggerEvent?.Invoke(isNPC);
+    }
+     
+    public static void OnAllEnemiesDead()
+    {
+        AllEnemiesDeadEvent?.Invoke();
     }
 }

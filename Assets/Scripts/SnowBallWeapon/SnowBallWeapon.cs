@@ -9,6 +9,8 @@ public class SnowBallWeapon : MonoBehaviour
     private IObjectPool<RevisedProjectile> objectPool;
     // throw an exception if we try to return an existing item, already in the pool
 
+    private SpriteRenderer spriteRenderer;
+
     [SerializeField] private bool collectionCheck = true;
     // extra options to control the pool capacity and maximum size
     [SerializeField] private int defaultCapacity = 5;
@@ -20,17 +22,8 @@ public class SnowBallWeapon : MonoBehaviour
         OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject,
         collectionCheck, defaultCapacity, maxSize);
                              
-      
     }
-    private void OnEnable()
-    {
-        EventBus.PlayerGetToFinishEvent += ActivateTheWeapon;
-    }
-    private void OnDisable()
-    {
-        EventBus.PlayerGetToFinishEvent -= ActivateTheWeapon;
-        
-    }
+   
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
@@ -58,7 +51,7 @@ public class SnowBallWeapon : MonoBehaviour
     {
         pooledObject.SetUpPosition(gameObject.transform);
         pooledObject.gameObject.SetActive(true);
-        pooledObject.SetUpForce(pooledObject.GetComponent<Rigidbody2D>(),gameObject.GetComponentInParent<SpriteRenderer>().flipX);
+        pooledObject.SetUpForce(pooledObject.GetComponent<Rigidbody2D>(),gameObject.GetComponent<SpriteRenderer>().flipX);
     }
     // invoked when we exceed the maximum number of pooled items (i.e. destroy the pooled object)
     private void OnDestroyPooledObject(RevisedProjectile pooledObject)

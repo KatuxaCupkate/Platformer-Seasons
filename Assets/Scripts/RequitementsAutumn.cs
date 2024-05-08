@@ -4,31 +4,33 @@ using UnityEngine;
 
 public class RequitementsAutumn : RequitementsBase
 {
-    [SerializeField] private int RequiringCoinCount;
+    [SerializeField] private int CoinCount;
+    [SerializeField] public int RequiringCoinCount { get;  private set ; }
     [SerializeField] private int RequiredKeyCount;
-   
-    private const string CoinsName = "Coin";
-    private const string KeyName = "Key";
-    private Wallet wallet;
 
-    public override void Initialize(Wallet wallet)
+    protected GameObject Coins;
+    protected GameObject Key;
+    private void Awake()
     {
-        base.Initialize(wallet);
-        this.wallet = wallet;
+        RequiringCoinCount = CoinCount;
     }
-
     private void Update()
     {
-        if (HaveRequireItems)
+        if (gameObject.CompareTag("NPC"))
         {
-            EventBus.OnGetToFinish(HaveRequireItems);
+            HaveRequireItems = CheckRequitementsForPassTheLevel(wallet.Balance, Coins.tag);
+        }
+        else if (gameObject.CompareTag("Home"))
+        {
+            HaveRequireItems = CheckRequitementsForPassTheLevel(wallet.KeyCount, Key.tag);
+
         }
     }
-
     public override bool CheckRequitementsForPassTheLevel(object objectValue, object objectName )
     {
         foreach (KeyValuePair<object , object> kvp in RequitementsToPass)
         {
+            
             if (kvp.Key.Equals(objectName))
             {
                 return (int)kvp.Value<=(int)objectValue;
@@ -41,14 +43,12 @@ public class RequitementsAutumn : RequitementsBase
 
     public override Dictionary<object, object> SetRequitements()
     {
-        object CoinKey = CoinsName;
-        object CoinValue = RequiringCoinCount;
-        object KeyValue = RequiredKeyCount;
-        object KeysKey = KeyName;
+       var items = RequireGameObjects.ToArray();
+        Coins = items[0]; Key = items[1];
         Dictionary<object, object> result = new Dictionary<object, object>()
         {
-           { CoinKey,CoinValue},
-           {KeysKey,KeyValue},
+           { Coins.tag,RequiringCoinCount},
+           {Key.tag,RequiredKeyCount},
         };
         return result;
 
@@ -56,15 +56,15 @@ public class RequitementsAutumn : RequitementsBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(gameObject.CompareTag("NPC"))
+        if(gameObject.CompareTag("NPC")&& HaveRequireItems)
         {
-           
-            HaveRequireItems = CheckRequitementsForPassTheLevel(wallet.Balance, CoinsName);
-           
+            EventBus.OnGetToFinish(Coins, HaveRequireItems);
         }
-        else if (gameObject.CompareTag("Home"))
+        else if (gameObject.CompareTag("Home") && HaveRequireItems)
         {
-            HaveRequireItems = CheckRequitementsForPassTheLevel(wallet.KeyCount, KeyName);
+           EventBus.OnGetToFinish(Key, HaveRequireItems);  
         }
+
     }
+    
 }

@@ -23,9 +23,10 @@ public class Key : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("NPC"))
+        if(collision.gameObject.CompareTag("Home")|| collision.gameObject.CompareTag("NPC"))
         {
             EventBus.OnItemPickedUpEvent(gameObject.tag,-1);
+            EventBus.OnFinishActionTriggered(collision.gameObject.CompareTag("NPC"));
             Destroy(gameObject);
         }
     }

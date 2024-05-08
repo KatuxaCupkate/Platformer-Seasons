@@ -16,7 +16,7 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private List<string> dialogues;
     [SerializeField] private int _finishDialIndex;
     private int _startDialIndex = 0;
-    private RequitementsBase _finishSc;
+    private RequitementsBase finishSc;
 
     //index of dialogue 
     private int index;
@@ -24,10 +24,10 @@ public class Dialogue : MonoBehaviour
     private bool dialogueShown = false;
     private bool waitNextSent;
 
-    private void Awake()
+    public void Initialize(RequitementsBase finishSc)
     {
         ToggleWindow(false);
-        _finishSc = FindAnyObjectByType<RequitementsBase>();
+        this.finishSc = finishSc;
     }
 
     public void ToggleWindow(bool show)
@@ -42,7 +42,7 @@ public class Dialogue : MonoBehaviour
         dialogueShown = true;
 
         ToggleWindow(true);
-        if (_finishSc.HaveRequireItems)
+        if (finishSc.HaveRequireItems)
             index = _finishDialIndex;
         else
             index = _startDialIndex;
@@ -95,7 +95,7 @@ public class Dialogue : MonoBehaviour
         if (waitNextSent && Input.GetKeyDown(KeyCode.E))
         {
             waitNextSent = false;
-            if (!_finishSc.HaveRequireItems & index == _finishDialIndex-1)
+            if (!finishSc.HaveRequireItems & index == _finishDialIndex-1)
                 index = 0;
             else
                 index++;

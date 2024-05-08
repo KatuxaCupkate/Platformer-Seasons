@@ -8,13 +8,13 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
-    [SerializeField] GameObject itemPrefab;
 
     private Rigidbody2D rb;
     private SpriteRenderer rbSprite;
     private Animator animator;
-    private Spawner spawner;
-  
+    
+    public GameObject itemPrefab;
+   
 
     private Vector2 _initJumpVelocity;
     private float _yVel;
@@ -124,14 +124,14 @@ public class PlayerController : MonoBehaviour
         rb.velocity = _initJumpVelocity;
     }
 
-    private void CanThrowTheItem(bool CanThrow)
+    private void CanThrowTheItem(GameObject item ,bool CanThrow)
     {
+        itemPrefab = item;
         canThrow = CanThrow; 
     }
     private void ThrowItem(bool CanThrow)
     {
         Vector2 direction = new Vector2(1, 1);
-        float waitSec = 0.1f;
         int force = 3;
         if (CanThrow&&Input.GetKeyDown(KeyCode.C))
         {

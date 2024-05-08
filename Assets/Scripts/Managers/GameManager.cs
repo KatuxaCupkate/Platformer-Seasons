@@ -14,7 +14,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private Button restartButton;
 
     private bool _paused;
-    private bool _gameIsActive;
+   
     public override void Awake()
     {
         if (titleScreen == null)
@@ -69,7 +69,7 @@ public class GameManager : Singleton<GameManager>
         titleScreen.SetActive(true);
         restartButton.gameObject.SetActive(true);
         exitButton.gameObject.SetActive(true);
-        _gameIsActive = false;  
+        
     }
 
     // Exit application on button click

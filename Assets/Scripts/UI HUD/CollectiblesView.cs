@@ -37,7 +37,7 @@ public class CollectiblesView : MonoBehaviour
         {
             keyFull.gameObject.SetActive(true);
         }
-        else if (name.Equals("Key") && amount <= 0)
+        else if (name.Equals("Key") && amount <= 0&&Wallet.KeyCount<1)
         { keyFull.gameObject.SetActive(false); }
 
          amount = Wallet.Balance;
