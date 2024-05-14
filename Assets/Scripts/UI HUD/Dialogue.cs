@@ -22,6 +22,7 @@ public class Dialogue : MonoBehaviour
     private int index;
     private int charIndex;
     private bool dialogueShown = false;
+    private bool firstEnter = false;
     private bool waitNextSent;
 
     public void Initialize(RequitementsBase finishSc)
@@ -33,6 +34,7 @@ public class Dialogue : MonoBehaviour
     public void ToggleWindow(bool show)
     {
         dialogueWindow.SetActive(show);
+        
     }
 
     public void StartDialogue()
@@ -42,10 +44,15 @@ public class Dialogue : MonoBehaviour
         dialogueShown = true;
 
         ToggleWindow(true);
-        if (finishSc.HaveRequireItems)
+        if (finishSc.HaveRequireItems&&firstEnter)
+       {  
             index = _finishDialIndex;
+       } 
         else
-            index = _startDialIndex;
+           {
+             firstEnter = true; 
+             index = _startDialIndex;
+           } 
         // Start with first dialogue
         GetDialogue(index);
 

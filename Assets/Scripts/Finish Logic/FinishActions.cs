@@ -34,20 +34,20 @@ public class FinishActions : MonoBehaviour
         EventBus.FinishActionTriggerEvent -= ActivateSnowballs;
         
     }
-    private void OpenTheDoorAction(bool isNPC)
+    private void OpenTheDoorAction(bool isKey)
     {
-        if (!isNPC)
+        if (isKey)
         {
          HomeDoor.SetActive(true);
 
         }
     }
 
-    private void ActivatePlatform(bool isNPC)
+    private void ActivatePlatform(bool isKey)
     {
         if(Platform != null)
         {
-            Platform.enabled = isNPC;
+            Platform.enabled = !isKey;
         }
 
     }
@@ -63,9 +63,9 @@ public class FinishActions : MonoBehaviour
         {
             cameraController.LookAt(trap);
             var startPosition = trap.transform.position;
-            var endPosition = Vector2.down * 2;
+            var endPosition = (Vector2)startPosition+Vector2.down/2f; 
             var distance = (endPosition - (Vector2) startPosition).magnitude;
-            var duration = distance / 2f;
+            var duration = distance / 0.5f;
 
             var t = 0f;
             while (t < 1)
@@ -74,8 +74,8 @@ public class FinishActions : MonoBehaviour
                 t += Time.deltaTime / duration;
                 yield return null;
             }
-           Destroy(trap);
-            yield return new WaitForSeconds(0.5f);
+           trap.SetActive(false);
+            yield return new WaitForSeconds(0.7f);
         }
 
         foreach (var trap in TrapsUp)
@@ -84,7 +84,7 @@ public class FinishActions : MonoBehaviour
             var startPosition = trap.transform.position;
             var endPosition = (Vector2)trap.transform.position + Vector2.up;
             var distance = (endPosition - (Vector2) startPosition).magnitude;
-            var duration = distance / 2f;
+            var duration = distance / 0.5f;
 
             var t = 0f;
             while (t < 1)
@@ -93,11 +93,13 @@ public class FinishActions : MonoBehaviour
                 t += Time.deltaTime / duration;
                 yield return null;
             }
-            Destroy(trap);
-            yield return new WaitForSeconds(0.5f);
+           trap.SetActive(false);
+        
+            yield return new WaitForSeconds(0.7f);
         }
-    }
 
+        cameraController.ResetCamera();
+    }
 
 
     private void ActivateSnowballs(bool isNPC)

@@ -8,6 +8,8 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] private AudioSource _enemyDeadAudio;
     [SerializeField] private AudioSource _enemyDamageAudio;
     [SerializeField] private AudioSource _deathAudioSource;
+    [SerializeField] private AudioSource _throwAudioSource;
+    [SerializeField] private AudioSource _finishAudioSource;
     private const string _keyName = "Key";
     private const string _coinName = "Coin";
     private const string _chestName = "Chest";
@@ -19,6 +21,8 @@ public class AudioManager : Singleton<AudioManager>
         EventBus.EnemyDeathEvent += PlayEnemyDeadAudio;
         EventBus.EnemyGetDamageEvent += PlayEnemyDamageAudio;
         EventBus.PlayerDeathEvent += PlayPlayerDeathAudio;
+        EventBus.ItemThrownEvent += PlayThrowAudio;
+        EventBus.LevelCompletedEvent += PlayFinishAudio;
     }
 
     private void OnDisable()
@@ -27,6 +31,8 @@ public class AudioManager : Singleton<AudioManager>
         EventBus.EnemyDeathEvent -= PlayEnemyDeadAudio;
         EventBus.ItemPickedUpEvent -= PlayItemAudio;
         EventBus.PlayerDeathEvent -= PlayPlayerDeathAudio;
+        EventBus.ItemThrownEvent -= PlayThrowAudio;
+        EventBus.LevelCompletedEvent -= PlayFinishAudio;
 
     }
     public void PlayItemAudio(string name, int amount)
@@ -64,5 +70,15 @@ public class AudioManager : Singleton<AudioManager>
     private void PlayPlayerDeathAudio()
     {
         _deathAudioSource.Play();
+    }
+
+    private void PlayThrowAudio()
+    {
+        _throwAudioSource.Play();
+    }
+
+    private void PlayFinishAudio(int sceneIndex)
+    {
+        _finishAudioSource.Play();
     }
 }

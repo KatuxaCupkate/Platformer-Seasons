@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34b3cad40c49a5e42bfbf6e644ccc982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectionCheck: 1
+  collectionCheck: 0
   defaultCapacity: 5
   maxSize: 10
+  projectilePrefab: {fileID: 0}

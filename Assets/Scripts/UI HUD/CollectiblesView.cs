@@ -12,36 +12,36 @@ public class CollectiblesView : MonoBehaviour
 
    public void Initialize(Wallet wallet)
     {
-        SetCoinsView(wallet);
+       ChangeCoinView(wallet.Balance);
         Wallet = wallet;
        coinsBalanceText = FindAnyObjectByType<Text>();  
        
     }
     private void OnEnable()
     {
-        EventBus.ItemPickedUpEvent += ChangeView;
+        EventBus.ItemPickedUpEvent += ChangeKeyView;
+        EventBus.BalanceChangedEvent += ChangeCoinView;
     }
 
     private void OnDisable()
     {
-        EventBus.ItemPickedUpEvent -= ChangeView;
+        EventBus.ItemPickedUpEvent -= ChangeKeyView;
+        EventBus.BalanceChangedEvent -= ChangeCoinView;
     }
-    public void SetCoinsView(Wallet wallet)
-    { 
-        coinsBalanceText.text="" + wallet.Balance;
-    }
-    public void ChangeView(string name, int amount)
+    
+    public void ChangeKeyView(string name, int amount)
     {
-
         if (name.Equals("Key") && amount > 0)
         {
             keyFull.gameObject.SetActive(true);
         }
-        else if (name.Equals("Key") && amount <= 0&&Wallet.KeyCount<1)
+        else if (name.Equals("Key") && amount <= 0)
         { keyFull.gameObject.SetActive(false); }
-
-         amount = Wallet.Balance;
-
+    }
+   
+   public void ChangeCoinView(int amount)
+    {
         coinsBalanceText.text = "" + amount;
     }
+
 }

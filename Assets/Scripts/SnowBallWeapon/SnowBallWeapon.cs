@@ -62,6 +62,7 @@ public class SnowBallWeapon : MonoBehaviour
     private void Fire()
     {
         objectPool.Get();
+        EventBus.OnItemThrown();
     }
 
     public void ActivateTheWeapon(bool activate)

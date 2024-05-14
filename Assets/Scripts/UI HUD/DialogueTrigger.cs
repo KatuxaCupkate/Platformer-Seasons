@@ -20,26 +20,32 @@ public class DialogueTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
 
     {
-        if (!playerDetected && collision.CompareTag("Player"))
+        if (!playerDetected && collision.CompareTag("Player")&& dialogueScript!=null)
         {
             playerDetected = true;
-           StartDialogue();
+            StartDialogue();
             
             if (_finishSc.HaveRequireItems)
             {
-                _pressCWindow.SetActive(true);
+                _pressCWindow.SetActive(playerDetected);
             }
+        }
+        else if (!playerDetected && collision.CompareTag("Player")&&_finishSc.HaveRequireItems)
+        {
+             playerDetected = true;
+            _pressCWindow.SetActive(playerDetected);
         }
 
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player")&& dialogueScript!=null)
         {
             playerDetected = false;
             dialogueScript.ToggleWindow(playerDetected);
             dialogueScript.EndDialogue();
+            _pressCWindow.SetActive(playerDetected);
         }
     }
 

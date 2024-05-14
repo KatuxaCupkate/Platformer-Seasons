@@ -7,25 +7,25 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     private CinemachineVirtualCamera vCamera;
-    [SerializeField] GameObject[] traps;
-
+   GameObject _player;
+   private float baseSize = 8f;
+   private float zoomInSize = 6f;
     public void Initialize(GameObject Player)
     {
         vCamera = FindAnyObjectByType<CinemachineVirtualCamera>();
         vCamera.Follow = Player.transform;
+        _player = Player;
     }
-    private void OnEnable()
-    {
-        //EventBus.AllEnemiesDeadEvent += LookAt;
-    }
-    private void OnDisable()
-    {
-       // EventBus.AllEnemiesDeadEvent -= LookAt;
-        
-    }
+    
     public void LookAt(GameObject traps)
     {
-        vCamera.LookAt = traps.GetComponentInChildren<Transform>();
-       
+        vCamera.m_Lens.OrthographicSize = zoomInSize;
+        vCamera.Follow = traps.transform; 
+    }
+
+    public void ResetCamera()
+    {
+        vCamera.m_Lens.OrthographicSize = baseSize;
+        vCamera.Follow = _player.transform;
     }
 }

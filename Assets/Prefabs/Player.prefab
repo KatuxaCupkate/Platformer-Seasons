@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _jumpForce: 3.2
+  _jumpForce: 42
   itemPrefab: {fileID: 2779951629318161454, guid: 9e57a0955b153dd41bd71272731a4464, type: 3}
   jumpSoundEffect: {fileID: 1588523790}
 --- !u!114 &6101747112516547334

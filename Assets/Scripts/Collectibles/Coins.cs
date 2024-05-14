@@ -17,7 +17,7 @@ public class Coins : MonoBehaviour
         if (collision.CompareTag("NPC"))
         {
             EventBus.OnItemPickedUpEvent(gameObject.tag,-collision.GetComponent<RequitementsAutumn>().RequiringCoinCount);
-            EventBus.OnFinishActionTriggered(collision.CompareTag("NPC"));
+            EventBus.OnFinishActionTriggered(gameObject.CompareTag("Key"));
             Destroy(gameObject);
         }
     }

@@ -8,18 +8,12 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
-
     private Rigidbody2D rb;
     private SpriteRenderer rbSprite;
     private Animator animator;
     
-    public GameObject itemPrefab;
-   
-
-    private Vector2 _initJumpVelocity;
-    private float _yVel;
+    public GameObject itemPrefab; 
     private float _timeToApex=0.5f;
-
     private float horizontalInput;
     private Vector2 move;
     private bool isGround;
@@ -115,28 +109,29 @@ public class PlayerController : MonoBehaviour
         CanMove = false; 
     }
 
-  private void Jump()
+    private void Jump()
     {
-        var gravity = (2 * _jumpForce) / (_timeToApex*_timeToApex);
-        _yVel =(float) Math.Sqrt(2 * gravity * _jumpForce);
-        _timeToApex = _yVel / gravity;
-        _initJumpVelocity = new Vector2(rb.velocity.x, _yVel);
-        rb.velocity = _initJumpVelocity;
+        float jumpHeight = _jumpForce;
+        float jumpTime = _timeToApex;
+        float initialVelocityY = Mathf.Sqrt(2 * jumpHeight / jumpTime);
+        rb.velocity = new Vector2(rb.velocity.x, initialVelocityY);
     }
+
 
     private void CanThrowTheItem(GameObject item ,bool CanThrow)
     {
         itemPrefab = item;
         canThrow = CanThrow; 
     }
-    private void ThrowItem(bool CanThrow)
+    private void ThrowItem(bool canThrow)
     {
-        Vector2 direction = new Vector2(1, 1);
-        int force = 3;
-        if (CanThrow&&Input.GetKeyDown(KeyCode.C))
+        const int throwForce = 3;
+        if (canThrow && Input.GetKeyDown(KeyCode.C))
         {
-            Instantiate(itemPrefab, new Vector2(transform.position.x, transform.position.y + 1), Quaternion.identity).GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
-            canThrow = false;
+            var itemInstance = Instantiate(itemPrefab, transform.position + Vector3.up, Quaternion.identity);
+            itemInstance.GetComponent<Rigidbody2D>().AddForce(new Vector2(1,1) * throwForce, ForceMode2D.Impulse);
+            this.canThrow = false;
+            EventBus.OnItemThrown();
         }
     }
 }

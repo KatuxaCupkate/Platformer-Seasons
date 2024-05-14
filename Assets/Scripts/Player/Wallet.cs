@@ -38,6 +38,7 @@ public class Wallet:MonoBehaviour
         { KeyCount += amount; }
         else if (name.Equals("Coin"))
         { Balance += amount;}
+        EventBus.OnBalanceChangedEvent(Balance);
         SaveCoinsAmount(Balance);
     }
 

@@ -33,16 +33,7 @@ public class RequitementsSummer : RequitementsBase
     {
         if (HaveRequireItems&&collision.CompareTag("Player"))
         {
-            RequireGameObjects.TryDequeue(out GameObject result);
-            EventBus.OnGetToFinish(result, HaveRequireItems);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.CompareTag("Key"))
-        {
-            EventBus.OnFinishActionTriggered(true);
+            EventBus.OnGetToFinish(RequireGameObjects.Peek(), HaveRequireItems);
         }
     }
 }

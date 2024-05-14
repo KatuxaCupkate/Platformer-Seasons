@@ -26,7 +26,7 @@ public class Key : MonoBehaviour
         if(collision.gameObject.CompareTag("Home")|| collision.gameObject.CompareTag("NPC"))
         {
             EventBus.OnItemPickedUpEvent(gameObject.tag,-1);
-            EventBus.OnFinishActionTriggered(collision.gameObject.CompareTag("NPC"));
+            EventBus.OnFinishActionTriggered(gameObject.CompareTag("Key"));
             Destroy(gameObject);
         }
     }

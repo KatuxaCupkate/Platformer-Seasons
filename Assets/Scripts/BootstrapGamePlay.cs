@@ -37,7 +37,6 @@ public class BootstrapGamePlay : MonoBehaviour
         RequireGameObjectsQueue = new Queue<GameObject>();
         foreach (var item in RequireGameObjectsList)
         {
-
            RequireGameObjectsQueue.Enqueue(item);
         }
 

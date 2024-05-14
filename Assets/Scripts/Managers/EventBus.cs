@@ -8,7 +8,7 @@ using System;
 public static class EventBus 
 {
     public delegate void OnCoinsBalanceChanged(int _amount);
-    public static event OnCoinsBalanceChanged CoinsBalanceChangedEvent;
+    public static Action<int> BalanceChangedEvent;
 
     public static Action LevelRestartedEvent;
     public static Action AllEnemiesDeadEvent;
@@ -16,7 +16,7 @@ public static class EventBus
 
     public static Action<int> LevelCompletedEvent;
     public static Action<GameObject,bool> PlayerGetToFinishEvent;
-
+    public static Action ItemThrownEvent;
     public static Action PlayerDeathEvent;
     public static Action EnemyDeathEvent;
     public static Action EnemyGetDamageEvent;
@@ -36,7 +36,7 @@ public static class EventBus
    public static void OnBalanceChangedEvent(int _amount)
 
     {
-        CoinsBalanceChangedEvent?.Invoke(_amount);
+        BalanceChangedEvent?.Invoke(_amount);
     }
     public static void OnPlayerDeathEvent()
     {
@@ -77,5 +77,10 @@ public static class EventBus
     public static void OnAllEnemiesDead()
     {
         AllEnemiesDeadEvent?.Invoke();
+    }
+
+    public static void OnItemThrown()
+    {
+        ItemThrownEvent?.Invoke();
     }
 }
