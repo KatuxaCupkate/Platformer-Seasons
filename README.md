@@ -55,7 +55,7 @@ When moving to the next level, the number of collected coins is saved.
 
 ## Autumn Level
 
-To progress to the next level, you will need 50 coins and a key.
+To progress to the next level, you will need 70 coins and a key.
 Coins are required to activate the lift from the NPC to the finish line.
 
 ## Winter Level
@@ -65,7 +65,7 @@ Destroying maces is achieved by [shooting snowballs](#Controls):
 - 3 hits for small mace;
 - 5 hits for large mace;<br><br>
 
-After that, part of the traps disappears. (under development) <br>
+After that, part of the traps disappears. <br>
 You will also need a key. <br> <br>
 
 
