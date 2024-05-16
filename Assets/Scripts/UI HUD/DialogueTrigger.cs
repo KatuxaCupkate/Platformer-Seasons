@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -8,6 +9,7 @@ public class DialogueTrigger : MonoBehaviour
 {
     [SerializeField] private Dialogue dialogueScript;
     [SerializeField] private GameObject _pressCWindow;
+    [SerializeField] private GameObject _kButton;
     [SerializeField] private int _finishDialIndex;
 
     private RequitementsBase _finishSc;
@@ -27,13 +29,15 @@ public class DialogueTrigger : MonoBehaviour
             
             if (_finishSc.HaveRequireItems)
             {
-                _pressCWindow.SetActive(playerDetected);
+                _pressCWindow.SetActive(playerDetected&&!Application.isMobilePlatform);
+                _kButton.SetActive(Application.isMobilePlatform);
             }
         }
         else if (!playerDetected && collision.CompareTag("Player")&&_finishSc.HaveRequireItems)
         {
              playerDetected = true;
             _pressCWindow.SetActive(playerDetected);
+           _kButton.SetActive(Application.isMobilePlatform);
         }
 
     }
@@ -45,7 +49,11 @@ public class DialogueTrigger : MonoBehaviour
             playerDetected = false;
             dialogueScript.ToggleWindow(playerDetected);
             dialogueScript.EndDialogue();
-            _pressCWindow.SetActive(playerDetected);
+                if(!Application.isMobilePlatform)
+                 {_pressCWindow.SetActive(playerDetected);}
+            if(Application.isMobilePlatform)
+            {_kButton.SetActive(false);}
+
         }
     }
 

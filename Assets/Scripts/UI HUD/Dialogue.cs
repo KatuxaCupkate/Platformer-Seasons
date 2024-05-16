@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 
 public class Dialogue : MonoBehaviour
@@ -17,7 +18,7 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private int _finishDialIndex;
     private int _startDialIndex = 0;
     private RequitementsBase finishSc;
-
+   private NewControls _controls;
     //index of dialogue 
     private int index;
     private int charIndex;
@@ -30,7 +31,22 @@ public class Dialogue : MonoBehaviour
         ToggleWindow(false);
         this.finishSc = finishSc;
     }
+    
+    private void Awake() 
+    {
+        _controls = new NewControls();
+        _controls.Enable();
+    }
 
+    private void OnEnable()
+     {
+        _controls.GameManage.NextDialogue.performed += NextSent;
+    }
+
+    private void OnDisable() {
+        _controls.GameManage.NextDialogue.performed -= NextSent;
+        
+    }
     public void ToggleWindow(bool show)
     {
         dialogueWindow.SetActive(show);
@@ -99,7 +115,12 @@ public class Dialogue : MonoBehaviour
         if (!dialogueShown)
             return;
 
-        if (waitNextSent && Input.GetKeyDown(KeyCode.E))
+       
+    }
+
+    private void NextSent(InputAction.CallbackContext context)
+    {
+         if (waitNextSent)
         {
             waitNextSent = false;
             if (!finishSc.HaveRequireItems & index == _finishDialIndex-1)

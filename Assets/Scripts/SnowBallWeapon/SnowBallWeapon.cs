@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.InputSystem;
 
 public class SnowBallWeapon : MonoBehaviour
 
@@ -9,27 +10,32 @@ public class SnowBallWeapon : MonoBehaviour
     private IObjectPool<RevisedProjectile> objectPool;
     // throw an exception if we try to return an existing item, already in the pool
 
-    private SpriteRenderer spriteRenderer;
-
     [SerializeField] private bool collectionCheck = true;
     // extra options to control the pool capacity and maximum size
     [SerializeField] private int defaultCapacity = 5;
     [SerializeField] private int maxSize = 10;
     [SerializeField] private RevisedProjectile projectilePrefab;
+
+    private NewControls _controls;
     private void Awake()
     {
         objectPool = new ObjectPool<RevisedProjectile>(CreateProjectile,
         OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject,
         collectionCheck, defaultCapacity, maxSize);
+
+        _controls = new NewControls();
+        _controls.Enable();
                              
     }
    
-    private void Update()
+    private void OnEnable()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            Fire();
-        }
+        _controls.GamePlay.Fire.performed += Fire;
+    }
+
+    private void OnDisable()
+    {
+        _controls.GamePlay.Fire.performed -= Fire;
     }
 
     // invoked when creating an item to populate the object pool
@@ -59,7 +65,7 @@ public class SnowBallWeapon : MonoBehaviour
         Destroy(pooledObject.gameObject);
     }
 
-    private void Fire()
+    private void Fire(InputAction.CallbackContext context)
     {
         objectPool.Get();
         EventBus.OnItemThrown();

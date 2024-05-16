@@ -7,7 +7,7 @@ using UnityEngine;
 public class BootstrapGamePlay : MonoBehaviour
 {
     [SerializeField] GameDataWallet dataWallet;
-
+     [SerializeField] Timer timer;
     [SerializeField] GameObject Player;
     [SerializeField] GameObject StartPoint;
     [SerializeField] GameObject WalletPref;
@@ -42,6 +42,7 @@ public class BootstrapGamePlay : MonoBehaviour
 
         SetData();
         SetPlayer();
+        timer.Initialize(dataStorage,dataWallet);
         vCamera.Initialize(Player);
         Wallet = Instantiate(WalletPref).GetComponent<Wallet>();
         Wallet.Initialize(dataWallet,dataStorage);

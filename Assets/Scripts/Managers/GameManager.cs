@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEditor;
+using UnityEngine.InputSystem;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -12,7 +13,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private Button exitButton;
     [SerializeField] private Button restartButton;
-
+    [SerializeField] private GameObject mobileInput;
+   private NewControls _controls;
     private bool _paused;
    
     public override void Awake()
@@ -26,25 +28,25 @@ public class GameManager : Singleton<GameManager>
         if (restartButton == null)
             restartButton = Instance.restartButton;
 
+      _controls = new NewControls();
+      _controls.Enable();
+      
+
     }
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            PauseGame();
-        }
-    }
+    
     private void OnEnable()
     {
         EventBus.PlayerDeathEvent += RestartGame; //subscribe to player death event
+        _controls.GameManage.Pause.performed += PauseGame;
     }
     private void OnDisable()
     {
+        _controls.GameManage.Pause.performed -= PauseGame;
         EventBus.PlayerDeathEvent -= RestartGame;
     }
 
 
-    public void PauseGame()
+    public void PauseGame(InputAction.CallbackContext context)
     {
         if (!_paused)
         {
@@ -66,6 +68,7 @@ public class GameManager : Singleton<GameManager>
     // Pop-up title screen and restart button on player's death 
     private void RestartGame()
     {
+        mobileInput.SetActive(false);
         titleScreen.SetActive(true);
         restartButton.gameObject.SetActive(true);
         exitButton.gameObject.SetActive(true);

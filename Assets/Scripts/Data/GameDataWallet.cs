@@ -8,4 +8,5 @@ using System;
 public class GameDataWallet
 {
     public int CoinsBalance;
+     public float elapsedTime;
 }

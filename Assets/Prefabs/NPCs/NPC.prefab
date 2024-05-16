@@ -57,6 +57,7 @@ MonoBehaviour:
   - Oh! You find green key!
   - Summer is over..it will rain soon..
   - Let's go, get some tea!
+  _finishDialIndex: 0
 --- !u!1 &842077394
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,7 +66,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 842077396}
+  - component: {fileID: 663802343361582983}
   - component: {fileID: 842077395}
   m_Layer: 0
   m_Name: Press C
@@ -74,7 +75,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &842077396
+--- !u!4 &663802343361582983
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -173,7 +174,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 842077396}
+  m_Father: {fileID: 663802343361582983}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -517,7 +518,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 842077396}
+  m_Father: {fileID: 663802343361582983}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -694,7 +695,7 @@ Transform:
   m_Children:
   - {fileID: 4120861644657350950}
   - {fileID: 291640070}
-  - {fileID: 842077396}
+  - {fileID: 663802343361582983}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

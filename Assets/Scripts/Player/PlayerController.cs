@@ -1,72 +1,68 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Cinemachine;
-using System;
 
-public class PlayerController : MonoBehaviour
+using UnityEngine;
+
+
+[RequireComponent(typeof(Rigidbody2D))]
+public class PlayerController : MonoBehaviour, IControllable
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
-    private Rigidbody2D rb;
+    [SerializeField] private AudioSource jumpSoundEffect;
+    [SerializeField] private LayerMask _groundLayerMask;
+    [SerializeField] private Transform _groundCheck;
+   [SerializeField] private float _groundCheckRadius = 0.2f;
+   
     private SpriteRenderer rbSprite;
     private Animator animator;
     
-    public GameObject itemPrefab; 
     private float _timeToApex=0.5f;
     private float horizontalInput;
     private Vector2 move;
+    private Rigidbody2D rb;
     private bool isGround;
     private bool canThrow;
     public bool CanMove { get; private set; }
+    public GameObject itemPrefab; 
     private enum MovementState { Idle, Run, Jump, Falling };
-  
 
-    [SerializeField] private AudioSource jumpSoundEffect;
     public void Initialize(GameObject Player, bool CanMove)
     {
         animator = Player.GetComponent<Animator>();
         rb = Player.GetComponent<Rigidbody2D>();
         rbSprite = Player.GetComponent<SpriteRenderer>();
         this.CanMove = CanMove;
-
+        
     }
     // Update is called once per frame
     void Update()
     {
-        PlayerMove();
-        horizontalInput = Input.GetAxisRaw("Horizontal");
         UpdateAnimationState();
-        ThrowItem(canThrow);
+       
+    }
+    private void FixedUpdate() 
+    {
+       MoveInternal();
     }
     private void OnEnable()
     {
         EventBus.PlayerDeathEvent += PlayerCantMove;
-        EventBus.PlayerGetToFinishEvent += CanThrowTheItem;
-       
+        EventBus.PlayerGetToFinishEvent += CanThrowTheItem;  
     }
     private void OnDisable()
-    {
-        
+    { 
         EventBus.PlayerDeathEvent -= PlayerCantMove;
-        EventBus.PlayerGetToFinishEvent -= CanThrowTheItem;
-       
-        
+        EventBus.PlayerGetToFinishEvent -= CanThrowTheItem;    
     }
-    public void PlayerMove()
+    public void Move(float horizontalInput)
     {
-        if (CanMove)
+       this.horizontalInput = horizontalInput;
+    }
+    public void Jump()
+    {  
+        if(GroundCheck())
         {
-            move = transform.position;
-            move.x += _speed * horizontalInput * Time.deltaTime;
-            transform.position = move;
-        }
-        //Jump
-        if (Input.GetKeyDown(KeyCode.Space) && isGround&&CanMove)
-        {
-            jumpSoundEffect.Play();
-            Jump();
-            isGround = false;
+         jumpSoundEffect.Play();
+         ApplyJumpForce();   
         }
     }
     private void UpdateAnimationState()
@@ -91,42 +87,43 @@ public class PlayerController : MonoBehaviour
         {
             state = MovementState.Jump;
         }
-        else if ((rb.velocity.y < -.1f) && (!isGround))
+        else if ((rb.velocity.y < -.1f) && (!GroundCheck()))
         {
             state = MovementState.Falling;
         }
         animator.SetInteger("State", ((int)state));
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-            isGround = true;
-
-    }
-
+   private bool GroundCheck()
+   {
+       var groundOverlap = Physics2D.OverlapCircle(_groundCheck.position, _groundCheckRadius, _groundLayerMask);
+       return groundOverlap;
+   }
+   
     private void PlayerCantMove()
     {
         CanMove = false; 
     }
 
-    private void Jump()
+    private void ApplyJumpForce()
     {
-        float jumpHeight = _jumpForce;
-        float jumpTime = _timeToApex;
-        float initialVelocityY = Mathf.Sqrt(2 * jumpHeight / jumpTime);
-        rb.velocity = new Vector2(rb.velocity.x, initialVelocityY);
+        float jumpVelocityY = CalculateJumpVelocityY(_jumpForce, _timeToApex);
+        rb.velocity = new Vector2(rb.velocity.x, jumpVelocityY);
     }
 
+    private static float CalculateJumpVelocityY(float jumpHeight, float jumpTime)
+    {
+        return Mathf.Sqrt(2 * jumpHeight / jumpTime);
+    }
 
     private void CanThrowTheItem(GameObject item ,bool CanThrow)
     {
         itemPrefab = item;
         canThrow = CanThrow; 
     }
-    private void ThrowItem(bool canThrow)
+    public void ThrowItem()
     {
         const int throwForce = 3;
-        if (canThrow && Input.GetKeyDown(KeyCode.C))
+        if (canThrow && itemPrefab != null)
         {
             var itemInstance = Instantiate(itemPrefab, transform.position + Vector3.up, Quaternion.identity);
             itemInstance.GetComponent<Rigidbody2D>().AddForce(new Vector2(1,1) * throwForce, ForceMode2D.Impulse);
@@ -134,4 +131,16 @@ public class PlayerController : MonoBehaviour
             EventBus.OnItemThrown();
         }
     }
+
+public void MoveInternal()
+{
+    if(CanMove)
+    {
+      move = transform.position;
+       move.x += _speed * horizontalInput * Time.fixedDeltaTime;
+      transform.position = move;
+    }
+}
+
+    
 }
