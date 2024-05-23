@@ -59,7 +59,7 @@ To progress to the next level, you will need 70 coins and a key.
 Coins are required to activate the lift from the NPC to the finish line.
 
 ## Winter Level
-(Under Development)<br>
+<br>
 To complete the level, you need to defeat enemies. For this, you will need 100 coins to purchase snowballs from the NPC. 
 Destroying maces is achieved by [shooting snowballs](#Controls):
 - 3 hits for small mace;
