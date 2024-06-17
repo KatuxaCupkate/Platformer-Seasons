@@ -61,12 +61,12 @@ Coins are required to activate the lift from the NPC to the finish line.
 ## Winter Level
 <br>
 To complete the level, you need to defeat enemies. For this, you will need 100 coins to purchase snowballs from the NPC. 
-Destroying maces is achieved by [shooting snowballs](#Controls):
+Destroying maces is achieved by shooting snowballs:
 - 3 hits for small mace;
 - 5 hits for large mace;<br><br>
 
 After that, part of the traps disappears. <br>
-You will also need a key. <br> <br>
+You will also need a key to get home. <br> <br>
 
 
 
