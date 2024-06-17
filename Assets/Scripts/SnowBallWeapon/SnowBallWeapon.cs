@@ -71,8 +71,5 @@ public class SnowBallWeapon : MonoBehaviour
         EventBus.OnItemThrown();
     }
 
-    public void ActivateTheWeapon(bool activate)
-    {
-      gameObject.SetActive(activate);
-    }
+   
 }

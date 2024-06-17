@@ -5,6 +5,7 @@ using UnityEngine;
 public class FinishActions : MonoBehaviour
 {
     [SerializeField] GameObject HomeDoor;
+    [SerializeField] GameObject mobileInputFire;
     [SerializeField] WaypointFollower Platform;
     [SerializeField] GameObject[] TrapsUp;
     [SerializeField] GameObject[] TrapsDown;
@@ -105,5 +106,6 @@ public class FinishActions : MonoBehaviour
     private void ActivateSnowballs(bool isNPC)
     {
         Player.GetComponent<SnowBallWeapon>().enabled = true;
+        mobileInputFire.SetActive(Application.isMobilePlatform );
     }
 }

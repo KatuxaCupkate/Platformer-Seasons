@@ -13,6 +13,7 @@ public class BootstrapGamePlay : MonoBehaviour
     [SerializeField] GameObject WalletPref;
     [SerializeField] CameraController vCamera;
     [SerializeField] Spawner ChestSpawner;
+    [SerializeField] InventoryGridView inventoryGridView;
  
     [SerializeField] CollectiblesView coinsView;
    
@@ -79,5 +80,18 @@ public class BootstrapGamePlay : MonoBehaviour
         {
             item.Initialize(Wallet, RequireGameObjectsQueue);
         }
+    }
+
+    private void InventorySetup()
+    {
+        var inventoryData = new InventoryGridData
+        {
+            OwnerId = "Player",
+            Size = new Vector2Int(3, 3),
+            Slots = new List<InventorySlotData>()
+        };
+
+        var grid = new InventoryGrid(inventoryData);
+        inventoryGridView.Setup(grid);
     }
 }

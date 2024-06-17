@@ -10,6 +10,7 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private Dialogue dialogueScript;
     [SerializeField] private GameObject _pressCWindow;
     [SerializeField] private GameObject _kButton;
+    [SerializeField] private GameObject _nextSentButton;
     [SerializeField] private int _finishDialIndex;
 
     private RequitementsBase _finishSc;
@@ -26,6 +27,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             playerDetected = true;
             StartDialogue();
+           _nextSentButton.SetActive(playerDetected);
             
             if (_finishSc.HaveRequireItems)
             {
@@ -47,6 +49,7 @@ public class DialogueTrigger : MonoBehaviour
         if (collision.CompareTag("Player")&& dialogueScript!=null)
         {
             playerDetected = false;
+           _nextSentButton.SetActive(playerDetected);
             dialogueScript.ToggleWindow(playerDetected);
             dialogueScript.EndDialogue();
                 if(!Application.isMobilePlatform)

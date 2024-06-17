@@ -11,13 +11,13 @@ public class Timer : MonoBehaviour
     private GameDataWallet dataWallet;
 
 
-         private float elapsedTime = 0f;
+         private float elapsedTime;
 
      public void Initialize( GameDataStorage storageWallet, GameDataWallet dataWallet)
      {
            this.storageWallet = storageWallet;
            this.dataWallet = dataWallet;
-           elapsedTime = dataWallet.elapsedTime;
+           elapsedTime = 0f;
      }
     void Update()
     {
@@ -34,12 +34,12 @@ public class Timer : MonoBehaviour
     }
 
     private void OnEnable() {
-       // EventBus.PlayerDeathEvent += ResetTimer;
+       EventBus.PlayerDeathEvent += ResetTimer;
     }
 
     private void OnDisable() {
         
-       // EventBus.PlayerDeathEvent -= ResetTimer;
+        EventBus.PlayerDeathEvent -= ResetTimer;
     }
 
     private void ResetTimer()
@@ -51,5 +51,7 @@ public class Timer : MonoBehaviour
     {
         dataWallet.elapsedTime = elapsedTime;
         storageWallet.Save(dataWallet);
+        //TODO
+        // lider board time per lvl
     }
 }
