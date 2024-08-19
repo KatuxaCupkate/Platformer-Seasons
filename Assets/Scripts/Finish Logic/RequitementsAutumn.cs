@@ -16,15 +16,15 @@ public class RequitementsAutumn : RequitementsBase
     }
     private void Update()
     {
-        if (gameObject.CompareTag("NPC"))
-        {
-            HaveRequireItems = CheckRequitementsForPassTheLevel(wallet.Balance, Coins.tag);
-        }
-        else if (gameObject.CompareTag("Home"))
-        {
-            HaveRequireItems = CheckRequitementsForPassTheLevel(wallet.KeyCount, Key.tag);
+        // if (gameObject.CompareTag("NPC"))
+        // {
+        //     HaveRequireItems = CheckRequitementsForPassTheLevel(wallet.Balance, Coins.tag);
+        // }
+        // else if (gameObject.CompareTag("Home"))
+        // {
+        //     HaveRequireItems = CheckRequitementsForPassTheLevel(wallet.KeyCount, Key.tag);
 
-        }
+        // }
     }
     public override bool CheckRequitementsForPassTheLevel(object objectValue, object objectName )
     {
@@ -56,13 +56,15 @@ public class RequitementsAutumn : RequitementsBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(gameObject.CompareTag("NPC")&& HaveRequireItems)
+        if(gameObject.CompareTag("NPC")&&CheckRequitementsForPassTheLevel(wallet.Balance, Coins.tag))
         {
-            EventBus.OnGetToFinish(Coins, HaveRequireItems);
+             HaveRequireItems = CheckRequitementsForPassTheLevel(wallet.Balance, Coins.tag);
+            EventBus.OnGetToFinish(Coins, CheckRequitementsForPassTheLevel(wallet.Balance, Coins.tag));
         }
-        else if (gameObject.CompareTag("Home") && HaveRequireItems)
+        else if (gameObject.CompareTag("Home") && CheckRequitementsForPassTheLevel(wallet.KeyCount, Key.tag))
         {
-           EventBus.OnGetToFinish(Key, HaveRequireItems);  
+            HaveRequireItems = CheckRequitementsForPassTheLevel(wallet.KeyCount, Key.tag);
+           EventBus.OnGetToFinish(Key, CheckRequitementsForPassTheLevel(wallet.KeyCount, Key.tag));  
         }
 
     }

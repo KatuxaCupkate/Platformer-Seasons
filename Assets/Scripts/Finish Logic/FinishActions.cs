@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FinishActions : MonoBehaviour
 {
@@ -105,7 +106,11 @@ public class FinishActions : MonoBehaviour
 
     private void ActivateSnowballs(bool isNPC)
     {
+        if(SceneManager.GetActiveScene().name == "Winter")
+       {
         Player.GetComponent<SnowBallWeapon>().enabled = true;
         mobileInputFire.SetActive(Application.isMobilePlatform );
+       }
+        
     }
 }

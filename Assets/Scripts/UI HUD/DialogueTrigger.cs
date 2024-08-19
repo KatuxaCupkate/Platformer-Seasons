@@ -29,11 +29,9 @@ public class DialogueTrigger : MonoBehaviour
             StartDialogue();
            _nextSentButton.SetActive(playerDetected);
             
-            if (_finishSc.HaveRequireItems)
-            {
-                _pressCWindow.SetActive(playerDetected&&!Application.isMobilePlatform);
-                _kButton.SetActive(Application.isMobilePlatform);
-            }
+          _pressCWindow.SetActive(!Application.isMobilePlatform);
+          _kButton.SetActive(Application.isMobilePlatform);
+            
         }
         else if (!playerDetected && collision.CompareTag("Player")&&_finishSc.HaveRequireItems)
         {
